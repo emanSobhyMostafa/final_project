@@ -1,19 +1,21 @@
-
 import 'package:final_project/widgets/my_app_bar.dart';
 import 'package:final_project/widgets/my_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/navigation_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      appBar: MyAppBar(height:120),
+      appBar: MyAppBar(height: 120),
       drawer: MyDrawer(),
       body: Center(
-        child: Text("Hello from home page"),
+        child: Text(
+          "Hello from home page",
+          style: GoogleFonts.oswald(),
+        ),
       ),
     );
   }

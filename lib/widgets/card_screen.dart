@@ -4,9 +4,7 @@ class CardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Hello from card"),
-      ),
+      body: Center(child: Text("Hello from card")),
     );
   }
 }
