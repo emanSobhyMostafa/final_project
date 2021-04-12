@@ -1,4 +1,5 @@
 import 'package:final_project/screens/home/home_screen.dart';
+import 'package:final_project/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        
         primaryColor: Colors.blue,
         accentColor: Colors.black,
       ),
-      home: HomeScreen(),
+      home: NavigaionButton(),
     );
   }
 }
