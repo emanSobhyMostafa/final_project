@@ -1,4 +1,5 @@
 import 'package:final_project/screens/home/home_screen.dart';
+import 'package:final_project/screens/home/widgets/slider_widget.dart';
 import 'package:final_project/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
         accentColor: Colors.black,
       ),
-      home: HomeScreen(),
+      home: ImageSliderDemo(),
     );
   }
 }
