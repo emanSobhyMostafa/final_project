@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
         accentColor: Colors.black,
       ),
-      home: NavigaionButton(),
+      home: HomeScreen(),
     );
   }
 }
