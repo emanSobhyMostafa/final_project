@@ -14,25 +14,22 @@ class ImageSliderDemo extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-          child: CarouselSlider(
-        options: CarouselOptions(
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enlargeCenterPage: true,
-          scrollDirection: Axis.horizontal,
-        ),
-        items: imgList
-            .map((item) => Container(
-                  child: Center(
-                      child:
-                          Image.network(item, fit: BoxFit.cover, width: 1000)),
-                ))
-            .toList(),
-      )),
-    );
+    return Container(
+        child: CarouselSlider(
+      options: CarouselOptions(
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enlargeCenterPage: true,
+        scrollDirection: Axis.horizontal,
+      ),
+      items: imgList
+          .map((item) => Container(
+                child: Center(
+                    child: Image.network(item, fit: BoxFit.cover, width: 1000)),
+              ))
+          .toList(),
+    ));
   }
 }
