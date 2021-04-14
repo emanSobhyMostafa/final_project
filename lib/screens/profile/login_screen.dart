@@ -104,9 +104,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          'ForgetPassword? ',
-                        ),
+                        InkWell(
+                          splashColor: Colors.amberAccent.withOpacity(0.5),
+                          onTap: () {
+                            Navigator.pop(context, '/register');
+                          },
+                          child: Text(
+                            ' Forgot Password?',
+                            style: TextStyle(
+                                color: Colors.blueAccent,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
                       ],
                     )),
                 Container(

@@ -38,6 +38,7 @@ dependencies:
   carousel_slider:
   google_fonts: ^1.1.2
   color: ^3.0.0
+  auth_buttons: ^1.0.0
 
 dev_dependencies:
   flutter_test:

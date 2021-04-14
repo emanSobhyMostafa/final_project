@@ -43,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Container(
         alignment: Alignment.center,
         child: Padding(
-          padding: const EdgeInsets.only(top: 32, bottom: 32),
+          padding: const EdgeInsets.only(bottom: 15),
           child: Icon(Icons.ac_unit),
         ));
   }
