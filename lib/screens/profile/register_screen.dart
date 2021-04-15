@@ -165,9 +165,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onPrimary: Colors.white,
                       padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
                       elevation: 5.0,
-                      shape: const BeveledRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(25.0))),
+                      // shape: const BeveledRectangleBorder(
+                      //     borderRadius:
+                      //         BorderRadius.all(Radius.circular(25.0))),
                     ),
                     child: Text(
                       'Register',

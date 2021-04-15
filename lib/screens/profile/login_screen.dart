@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:color/color.dart';
+import 'package:auth_buttons/auth_buttons.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _textEditConEmail = TextEditingController();
   TextEditingController _textEditConPassword = TextEditingController();
   bool isPasswordVisible = false;
+  AuthButtonStyle authButtonStyle = AuthButtonStyle.icon;
+  AuthIconStyle authIconStyle = AuthIconStyle.outlined;
 
   @override
   void initState() {
@@ -55,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.center,
                   width: double.infinity,
                   child: Text(
-                    'Register',
+                    'Login',
                     style: TextStyle(fontSize: 18.0, color: Colors.black),
                   ),
                 ), // title: login
@@ -127,8 +130,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPrimary: Colors.white,
                       padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
                       elevation: 5.0,
-                      shape: const BeveledRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
                     ),
                     child: Text(
                       'Login',
@@ -141,7 +142,36 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                 ), //button: login
-
+                Container(
+                  margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('OR'),
+                      Container(
+                        margin: EdgeInsets.only(top: 25.0, bottom: 25.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 25),
+                              child: GoogleAuthButton(
+                                onPressed: () {},
+                                style: AuthButtonStyle.icon,
+                              ),
+                            ),
+                            Divider(),
+                            FacebookAuthButton(
+                              onPressed: () {},
+                              style: AuthButtonStyle.icon,
+                            ),
+                            Divider(),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 Container(
                     margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
                     child: Row(
@@ -163,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         )
                       ],
-                    ))
+                    )),
               ],
             ),
           ),
