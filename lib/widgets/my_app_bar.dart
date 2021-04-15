@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-class MyAppBar extends StatelessWidget {
-  // final double height;
+class MyAppBar extends PreferredSize {
+  final double height;
   final bool isFromHome;
 
   MyAppBar({
-    // this.height = kToolbarHeight,
+    this.height = kToolbarHeight,
     this.isFromHome,
   });
 
- 
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {

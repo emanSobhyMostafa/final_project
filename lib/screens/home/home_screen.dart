@@ -32,10 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:  Size.fromHeight(120),
-        child: MyAppBar( isFromHome: true),
-      ),
+      appBar: MyAppBar(height: 120,isFromHome: true,),
       drawer: MyDrawer(),
       body: _pageOptions[selectedPage],
       bottomNavigationBar: BottomNavigationBar(
