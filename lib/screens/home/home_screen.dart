@@ -1,7 +1,7 @@
 import 'package:final_project/screens/card/card_screen.dart';
 import 'package:final_project/screens/home/widgets/main_categories.dart';
 import 'package:final_project/screens/home/widgets/slider_widget.dart';
-import 'package:final_project/screens/profile/profile_screen.dart';
+import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:final_project/widgets/my_app_bar.dart';
 import 'package:final_project/widgets/my_drawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,13 +26,16 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     ),
-    ProfileScreen(),
+    RegisterScreen(),
     CardScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(height: 120,isFromHome: true,),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(120),
+        child: MyAppBar(isFromHome: true),
+      ),
       drawer: MyDrawer(),
       body: _pageOptions[selectedPage],
       bottomNavigationBar: BottomNavigationBar(
