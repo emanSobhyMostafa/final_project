@@ -1,9 +1,9 @@
 import 'package:final_project/config/routes.dart';
 import 'package:final_project/screens/home/home_screen.dart';
-import 'package:final_project/screens/profile/login_screen.dart';
-import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'config/theme_colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Colors.blue,
-          accentColor: Colors.black,
+          primaryColor: primary,
+          accentColor: secondary,
           textTheme: GoogleFonts.latoTextTheme(
             Theme.of(context).textTheme,
           )),

@@ -1,3 +1,4 @@
+import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_buttons/auth_buttons.dart';
@@ -131,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.redAccent,
+                      primary: third,
                       onPrimary: Colors.white,
                       padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
                       elevation: 5.0,
@@ -193,8 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             ' Sign Up',
                             style: TextStyle(
-                                color: Colors.redAccent,
-                                fontWeight: FontWeight.bold),
+                                color: third, fontWeight: FontWeight.bold),
                           ),
                         )
                       ],
