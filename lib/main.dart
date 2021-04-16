@@ -1,8 +1,7 @@
+import 'package:final_project/config/routes.dart';
 import 'package:final_project/screens/home/home_screen.dart';
-import 'package:final_project/screens/home/widgets/slider_widget.dart';
 import 'package:final_project/screens/profile/login_screen.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
-import 'package:final_project/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: Colors.blue,
           accentColor: Colors.black,
@@ -24,10 +24,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           )),
       home: HomeScreen(),
-      routes: {
-        '/register': (context) => RegisterScreen(),
-        '/login': (context) => LoginScreen(),
-      },
+      routes: routes,
     );
   }
 }

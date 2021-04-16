@@ -1,7 +1,8 @@
+import 'package:final_project/screens/profile/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:color/color.dart';
 
 class RegisterScreen extends StatefulWidget {
+  static const routeName = "register";
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -191,7 +192,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         InkWell(
                           splashColor: Colors.amberAccent.withOpacity(0.5),
                           onTap: () {
-                            Navigator.pushNamed(context, '/login');
+                            Navigator.pushNamed(context, LoginScreen.routeName);
                           },
                           child: Text(
                             ' Login',

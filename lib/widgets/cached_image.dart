@@ -14,7 +14,7 @@ class CachedImage extends StatelessWidget {
     this.imgurl,
     this.icon,
     this.fit,
-  }) ;
+  });
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
@@ -23,7 +23,8 @@ class CachedImage extends StatelessWidget {
       height: height,
       fit: fit ?? BoxFit.cover,
       progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-          child: CircularProgressIndicator(value: downloadProgress.progress)),
+        child: CircularProgressIndicator(value: downloadProgress.progress),
+      ),
       errorWidget: (context, url, error) => Icon(icon ?? Icons.error),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,10 @@ class ProductDetailsScreen extends StatelessWidget {
         actions: [
           FlatButton(
             textColor: Colors.white,
-            child: Icon(Icons.shopping_cart_rounded),
+            child: Badge(
+              badgeContent: Text("3"),
+              child: Icon(Icons.shopping_cart_rounded),
+            ),
             onPressed: () {},
           )
         ],
@@ -27,13 +31,17 @@ class ProductDetailsScreen extends StatelessWidget {
             height: 10,
           ),
           Center(
-            child: Text(
-              "Product Name",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              children: [
+                Text(
+                  "Product Name",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(
@@ -61,10 +69,17 @@ class ProductDetailsScreen extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 15),
             child: RaisedButton.icon(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
               textColor: Colors.white,
-              icon: Icon(Icons.add_shopping_cart_rounded,size: 30,),
-              label: Text("ADD TO  CART",style: TextStyle(fontSize: 20),),
+              icon: Icon(
+                Icons.add_shopping_cart_rounded,
+                size: 30,
+              ),
+              label: Text(
+                "ADD TO  CART",
+                style: TextStyle(fontSize: 20),
+              ),
               color: Theme.of(context).primaryColor,
               onPressed: () {},
             ),

@@ -1,8 +1,9 @@
+import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:color/color.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = "login";
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -13,7 +14,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _textEditConPassword = TextEditingController();
   bool isPasswordVisible = false;
   AuthButtonStyle authButtonStyle = AuthButtonStyle.icon;
-  // AuthIconStyle authIconStyle = AuthIconStyle.outlined;
 
   @override
   void initState() {
@@ -25,14 +25,16 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-      body: SingleChildScrollView(
-        child: Padding(
-            padding: EdgeInsets.only(top: 50.0),
-            child: Column(
-              children: <Widget>[
-                getWidgetLoginCard(),
-              ],
-            )),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+              padding: EdgeInsets.only(top: 50.0),
+              child: Column(
+                children: <Widget>[
+                  getWidgetLoginCard(),
+                ],
+              )),
+        ),
       ),
     );
   }
@@ -57,9 +59,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   alignment: Alignment.center,
                   width: double.infinity,
-                  child: Text(
+                  child: const Text(
                     'Login',
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black,
+                    ),
                   ),
                 ), // title: login
                 //text field : user name
@@ -183,10 +188,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         InkWell(
                           splashColor: Colors.amberAccent.withOpacity(0.5),
                           onTap: () {
-                            Navigator.pop(context, '/register');
+                            Navigator.pop(context, RegisterScreen.routeName);
                           },
                           child: Text(
-                            ' Sign in',
+                            ' Sign Up',
                             style: TextStyle(
                                 color: Colors.redAccent,
                                 fontWeight: FontWeight.bold),
