@@ -230,7 +230,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   String _validateConfirmPassword(String value) {
-    return value.length < 5 ? 'Min 5 char required' : null;
+    return value.length < 5
+        ? 'Min 5 char required'
+        : (value != _textEditConPassword.text ? 'password dont match' : null);
   }
 
   void _onTappedButtonRegister() {}

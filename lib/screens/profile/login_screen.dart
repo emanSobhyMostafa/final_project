@@ -1,5 +1,6 @@
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
+import 'package:final_project/screens/profile/resetpassword_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 
@@ -116,7 +117,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         InkWell(
                           splashColor: Colors.amberAccent.withOpacity(0.5),
                           onTap: () {
-                            Navigator.pop(context, '/register');
+                            Navigator.pushNamed(
+                                context, ResetPassword.routeName);
                           },
                           child: Text(
                             ' Forgot Password?',
