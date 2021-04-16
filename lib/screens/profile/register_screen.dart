@@ -1,3 +1,4 @@
+import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/profile/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +88,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     decoration: InputDecoration(
                         labelText: 'Full name',
-                        //prefixIcon: Icon(Icons.email),
                         icon: Icon(Icons.perm_identity)),
                   ),
                 ), //text field : user name
@@ -162,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.redAccent,
+                      primary: third,
                       onPrimary: Colors.white,
                       padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
                       elevation: 5.0,
@@ -197,8 +197,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Text(
                             ' Login',
                             style: TextStyle(
-                                color: Colors.redAccent,
-                                fontWeight: FontWeight.bold),
+                                color: third, fontWeight: FontWeight.bold),
                           ),
                         )
                       ],
