@@ -1,3 +1,4 @@
+import 'package:final_project/screens/product_details/product_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GestureDetector(
       onTap: (){
-        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductDetailsScreen(prodId: prod.id,)));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductDetailsScreen()));
       },
       child: Padding(
         padding: const EdgeInsets.all(4.0),

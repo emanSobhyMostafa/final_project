@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 
-class MyAppBar extends StatelessWidget {
-  // final double height;
+class MyAppBar extends PreferredSize {
+  final double height;
   final bool isFromHome;
   final bool isFromCategory;
   final String title;
@@ -13,7 +13,13 @@ class MyAppBar extends StatelessWidget {
     this.isFromHome=false,
     this.isFromCategory = false
     ,
+
+    this.height = kToolbarHeight,
+
   });
+
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {
