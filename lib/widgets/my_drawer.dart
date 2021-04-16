@@ -1,3 +1,4 @@
+import 'package:final_project/screens/category/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -11,45 +12,48 @@ class MyDrawer extends StatelessWidget {
             height: 180,
             color: Colors.blue,
             child: DrawerHeader(
-             
-              child:
-               Padding(
-                padding: EdgeInsets.only(left: 8),
-                child: (
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                        child: Icon(
-                        IconData(61502, fontFamily: 'MaterialIcons'), size: 80,
+                child: Padding(
+              padding: EdgeInsets.only(left: 8),
+              child: (Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                      child: Icon(
+                        IconData(61502, fontFamily: 'MaterialIcons'),
+                        size: 80,
                         color: Colors.white,
-                        ),
-                        onTap: (){
-                          // Navigator.of(context).push(MaterialPageRoute(builder: (context) => userAccount()));
-                      }
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Welcome', style: TextStyle(color: Colors.white),),
-                    ) ,
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8 ),
-                      child: GestureDetector(
-                        child: Text('Log In / Sign Up' ,style: TextStyle(color: Colors.white),),
-                        onTap: (){
-                            // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
-                        },
                       ),
-                    )
-
-
-                ],)),
-              
-              )
-              ),
+                      onTap: () {
+                        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => userAccount()));
+                      }),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Welcome',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: GestureDetector(
+                      child: Text(
+                        'Log In / Sign Up',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onTap: () {
+                        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
+                      },
+                    ),
+                  )
+                ],
+              )),
+            )),
           ),
           ListTile(
-           // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.local_offer),
             title: Text('Deals'),
           ),
@@ -100,7 +104,6 @@ class MyDrawer extends StatelessWidget {
           ),
         ],
       ),
-      
     );
   }
 }

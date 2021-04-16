@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/navigation_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:badges/badges.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize:  Size.fromHeight(120),
-        child: MyAppBar( isFromHome: true),
+        child: MyAppBar( isFromHome: true,title:'Home'),
       ),
       drawer: MyDrawer(),
       body: _pageOptions[selectedPage],
@@ -50,7 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Profile",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Badge(
+      badgeContent: Text('3'),
+      child: Icon(Icons.shopping_cart),
+    ),
             label: "Cart",
           ),
         ],
