@@ -1,4 +1,5 @@
 import 'package:final_project/screens/category/category.dart';
+import 'package:final_project/screens/orders/orders_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -58,49 +59,84 @@ class MyDrawer extends StatelessWidget {
             title: Text('Deals'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.tv),
             title: Text('TVs'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.watch),
             title: Text('Watches'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.computer),
             title: Text('PC & Accessories'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.phone_android),
             title: Text('Mobiles & Tablets'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+             onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.electrical_services_outlined),
             title: Text('Electronics'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.kitchen),
             title: Text('Kitchen'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.beach_access_sharp),
             title: Text('Fashion'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.sports_basketball),
             title: Text('Sports'),
           ),
           ListTile(
-            // onTap:(){Navigator.of(context).push(MaterialPageRoute(builder: (context) => Categorie()))} ,
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Category()));
+            },
             leading: Icon(Icons.gamepad_outlined),
             title: Text('Games and Toys'),
+          ),
+          ListTile(
+              onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => MyOrders()));
+            },
+            leading: Icon(Icons.article_outlined),
+            title: Text('My Orders'),
           ),
         ],
       ),
