@@ -1,4 +1,7 @@
 import 'package:final_project/config/routes.dart';
+import 'package:final_project/screens/card/cart_payment.dart';
+import 'package:final_project/screens/card/cart_screen.dart';
+import 'package:final_project/screens/card/counter_cart.dart';
 import 'package:final_project/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,10 +9,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'config/theme_colors.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(_MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class _MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
   @override

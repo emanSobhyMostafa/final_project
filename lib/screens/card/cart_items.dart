@@ -1,20 +1,15 @@
-import 'package:final_project/screens/card/cart_screen.dart';
-import 'package:final_project/screens/product_details/product_details_screen.dart';
+import 'package:final_project/screens/card/counter_cart.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Product extends StatelessWidget {
+class CartItem extends StatelessWidget {
   final product;
 
-  const Product({Key key, this.product}) : super(key: key);
+  const CartItem({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ProductDetailsScreen()));
-      },
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Card(
@@ -40,10 +35,6 @@ class Product extends StatelessWidget {
                               padding: const EdgeInsets.all(2.0),
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.65,
-                                child: Text(
-                                  product.values.elementAt(1),
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
                               )),
                           Padding(
                             padding: const EdgeInsets.all(2.0),
@@ -53,7 +44,6 @@ class Product extends StatelessWidget {
                               textAlign: TextAlign.center,
                             )),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Center(
@@ -63,33 +53,13 @@ class Product extends StatelessWidget {
                               style: TextStyle(
                                   color: CupertinoColors.inactiveGray),
                             )),
-                          ), // getTextWidgets( post.results[index].title),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: Center(
-                                    child: ElevatedButton(
-                                  child: Row(children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 8),
-                                      child: Icon(Icons.shopping_cart),
-                                    ),
-                                    Text('Add To Cart')
-                                  ]),
-                                  onPressed: () {},
-                                )),
-                              ),
-                              GestureDetector(
-                                child: Icon(CupertinoIcons.heart),
-                              )
-                            ],
-                          ), // getTextWidgets( post.results[index].title),
+                          ),
                         ],
                       ),
                     ],
                   ),
                 ),
+                CounterView(),
               ],
             )),
       ),

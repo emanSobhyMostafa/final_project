@@ -1,4 +1,4 @@
-import 'package:final_project/screens/card/card_screen.dart';
+import 'package:final_project/screens/card/cart_screen.dart';
 import 'package:final_project/screens/home/widgets/main_categories.dart';
 import 'package:final_project/screens/home/widgets/slider_widget.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
@@ -6,8 +6,6 @@ import 'package:final_project/widgets/my_app_bar.dart';
 import 'package:final_project/widgets/my_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/navigation_button.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:badges/badges.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize:  Size.fromHeight(120),
-        child: MyAppBar( isFromHome: true,title:'Home'),
+        preferredSize: Size.fromHeight(120),
+        child: MyAppBar(isFromHome: true, title: 'Home'),
       ),
       drawer: MyDrawer(),
       body: _pageOptions[selectedPage],
@@ -52,9 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Badge(
-      badgeContent: Text('3'),
-      child: Icon(Icons.shopping_cart),
-    ),
+              badgeContent: Text('3'),
+              child: Icon(Icons.shopping_cart),
+            ),
             label: "Cart",
           ),
         ],
