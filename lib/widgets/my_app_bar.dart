@@ -30,7 +30,11 @@ class MyAppBar extends PreferredSize {
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Badge(
-                badgeContent: Text('3'),
+                badgeColor: third,
+                badgeContent: Text(
+                  '3',
+                  style: TextStyle(color: white),
+                ),
                 child: Icon(Icons.shopping_cart),
               ),
             ),
