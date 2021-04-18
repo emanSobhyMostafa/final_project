@@ -3,29 +3,24 @@ import 'package:flutter/material.dart';
 class CounterView extends StatefulWidget {
   final int initNumber;
   final Function(int) counterCallback;
-  final Function increaseCallback;
-  final Function decreaseCallback;
-  CounterView(
-      {this.initNumber,
-      this.counterCallback,
-      this.increaseCallback,
-      this.decreaseCallback});
+
+  CounterView({
+    this.initNumber,
+    this.counterCallback,
+  });
   @override
   _CounterViewState createState() => _CounterViewState();
 }
 
 class _CounterViewState extends State<CounterView> {
-  int _currentCount;
+  int currentCount;
   Function _counterCallback;
-  Function _increaseCallback;
-  Function _decreaseCallback;
 
   @override
   void initState() {
-    _currentCount = widget.initNumber ?? 1;
+    currentCount = widget.initNumber ?? 1;
     _counterCallback = widget.counterCallback ?? (int number) {};
-    _increaseCallback = widget.increaseCallback ?? () {};
-    _decreaseCallback = widget.decreaseCallback ?? () {};
+
     super.initState();
   }
 
@@ -41,7 +36,7 @@ class _CounterViewState extends State<CounterView> {
         // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _createIncrementDicrementButton(Icons.remove, () => _dicrement()),
-          Text(_currentCount.toString()),
+          Text(currentCount.toString()),
           _createIncrementDicrementButton(Icons.add, () => _increment()),
         ],
       ),
@@ -50,18 +45,16 @@ class _CounterViewState extends State<CounterView> {
 
   void _increment() {
     setState(() {
-      _currentCount++;
-      _counterCallback(_currentCount);
-      _increaseCallback();
+      currentCount++;
+      _counterCallback(currentCount);
     });
   }
 
   void _dicrement() {
     setState(() {
-      if (_currentCount > 1) {
-        _currentCount--;
-        _counterCallback(_currentCount);
-        _decreaseCallback();
+      if (currentCount > 1) {
+        currentCount--;
+        _counterCallback(currentCount);
       }
     });
   }
