@@ -22,7 +22,7 @@ class MyAppBar extends PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
+      title:!isFromHome? Text(title): Image.asset('assets/appbar_logo.png', fit: BoxFit.cover),
       actions: [
         if (!isFromHome)
           GestureDetector(

@@ -10,9 +10,9 @@ class MyOrders extends StatelessWidget {
     final orders = [
 {
 "id": 1,
-"title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+"item1": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
 "qty":2,
-"total": 109.95,
+"price": 109.95,
 "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
 "fee":20
 },{
@@ -51,3 +51,8 @@ class MyOrders extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
