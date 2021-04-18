@@ -7,7 +7,7 @@ class MainCategories extends StatelessWidget {
     return Column(
       children: [
         CategoryWithSubcategories(
-          mainCategoryName: "Fashoin",
+          mainCategoryName: "Fashion",
           subCategories: fachoinCategories,
         ),
         CategoryWithSubcategories(

@@ -26,8 +26,12 @@ class CategoryWithSubcategories extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                      child: Text(subCategories[i].keys.first.toUpperCase()),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 5),
+                      child: Text(
+                        subCategories[i].keys.first.toUpperCase(),
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                     Expanded(
                       child: ClipRRect(
@@ -43,10 +47,9 @@ class CategoryWithSubcategories extends StatelessWidget {
                       ),
                     )
                   ],
-                  
                 ),
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.grey[600],
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
@@ -56,7 +59,10 @@ class CategoryWithSubcategories extends StatelessWidget {
                         // spreadRadius: 1
                       )
                     ]),
-                margin: const EdgeInsets.symmetric(horizontal: 5,vertical: 5,),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 5,
+                  vertical: 5,
+                ),
               ),
               itemCount: subCategories.length,
               scrollDirection: Axis.horizontal,
@@ -65,8 +71,7 @@ class CategoryWithSubcategories extends StatelessWidget {
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
       ),
-      height: MediaQuery.of(context).size.height*.25,
-     
+      height: MediaQuery.of(context).size.height * .25,
     );
   }
 }

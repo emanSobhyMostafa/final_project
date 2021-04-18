@@ -3,6 +3,7 @@ import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
+  static const routeName = "details";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

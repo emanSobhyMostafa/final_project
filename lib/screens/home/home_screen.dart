@@ -1,3 +1,4 @@
+import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/card/cart_screen.dart';
 import 'package:final_project/screens/home/widgets/main_categories.dart';
 import 'package:final_project/screens/home/widgets/slider_widget.dart';
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(120),
-        child: MyAppBar(isFromHome: true, title: 'Home'),
+        child: MyAppBar(isFromHome: true, title: 'مضمون-Madmoon'),
       ),
       drawer: MyDrawer(),
       body: _pageOptions[selectedPage],
@@ -56,11 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Cart",
           ),
         ],
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.white,
         elevation: 5.0,
-        unselectedItemColor: Colors.grey,
+        
+        unselectedItemColor: Colors.grey[400].withOpacity(.8),
         currentIndex: selectedPage,
-        backgroundColor: Colors.white,
+        backgroundColor: primary,
         onTap: (index) {
           setState(() {
             selectedPage = index;
