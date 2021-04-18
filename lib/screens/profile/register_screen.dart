@@ -33,21 +33,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
             padding: EdgeInsets.only(top: 25.0),
             child: Column(
               children: <Widget>[
-                getWidgetImageLogo(),
                 getWidgetRegistrationCard(),
               ],
             )),
       ),
     );
-  }
-
-  Widget getWidgetImageLogo() {
-    return Container(
-        alignment: Alignment.center,
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: Icon(Icons.ac_unit),
-        ));
   }
 
   Widget getWidgetRegistrationCard() {

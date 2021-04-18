@@ -1,3 +1,4 @@
+import 'package:final_project/config/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class CounterView extends StatefulWidget {
@@ -65,10 +66,10 @@ class _CounterViewState extends State<CounterView> {
       constraints: BoxConstraints(minWidth: 32.0, minHeight: 32.0),
       onPressed: onPressed,
       elevation: 2.0,
-      fillColor: Colors.cyan,
+      fillColor: third,
       child: Icon(
         icon,
-        color: Colors.black,
+        color: white,
         size: 12.0,
       ),
       shape: CircleBorder(),

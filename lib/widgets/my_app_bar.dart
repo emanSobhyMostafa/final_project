@@ -1,3 +1,4 @@
+import 'package:final_project/config/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 
@@ -27,7 +28,11 @@ class MyAppBar extends PreferredSize {
           Padding(
             padding: const EdgeInsets.all(15),
             child: Badge(
-              badgeContent: Text('3'),
+              badgeColor: third,
+              badgeContent: Text(
+                '3',
+                style: TextStyle(color: white),
+              ),
               child: Icon(Icons.shopping_cart),
             ),
           )

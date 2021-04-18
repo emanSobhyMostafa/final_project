@@ -1,3 +1,4 @@
+import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/card/cart_screen.dart';
 import 'package:final_project/screens/product_details/product_details_screen.dart';
 import 'package:final_project/widgets/cached_image.dart';
@@ -62,12 +63,16 @@ class Product extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(2.0),
                               child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: third,
+                                  onPrimary: white,
+                                ),
                                 child: Row(children: [
                                   Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: Icon(Icons.shopping_cart),
                                   ),
-                                  Text('Add To Cart')
+                                  Text('Add To Cart'),
                                 ]),
                                 onPressed: () {},
                               ),

@@ -51,7 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Badge(
-              badgeContent: Text('3'),
+              badgeColor: third,
+              badgeContent: Text(
+                '3',
+                style: TextStyle(color: white),
+              ),
               child: Icon(Icons.shopping_cart),
             ),
             label: "Cart",
@@ -59,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         selectedItemColor: Colors.white,
         elevation: 5.0,
-        
+
         unselectedItemColor: Colors.grey[400].withOpacity(.8),
         currentIndex: selectedPage,
         backgroundColor: primary,
