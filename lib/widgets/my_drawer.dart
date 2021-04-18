@@ -1,3 +1,4 @@
+import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/category/category.dart';
 import 'package:final_project/screens/orders/orders_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class MyDrawer extends StatelessWidget {
         children: [
           Container(
             height: 180,
-            color: Colors.blue,
+            color: primary,
             child: DrawerHeader(
                 child: Padding(
               padding: EdgeInsets.only(left: 8),

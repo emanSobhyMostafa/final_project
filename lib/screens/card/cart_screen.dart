@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:final_project/config/dumy_data.dart';
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/card/cart_items.dart';
@@ -12,23 +14,44 @@ class CardScreen extends StatefulWidget {
 
 class _CardScreenState extends State<CardScreen> {
   @override
+  initState() {
+    super.initState();
+    getTotal();
+  }
+
+  double total = 0.0;
+  sum(prod) {
+    return prod['qty'] * prod['price'];
+  }
+
+  getTotal() {
+    for (var item in testProducts) {
+      total += sum(item);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
-        Expanded(
+      body: Column(
+        children: [
+          Expanded(
             child: ListView.builder(
                 itemCount: testProducts.length,
                 itemBuilder: (ctx, index) {
                   final product = testProducts[index];
-
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CartItem(product: product),
-                    ],
+                  return CartItem(
+                    product: product,
+                    triggrtTotal: (total) {
+                      setState(() {
+                        getTotal();
+                      });
+                    },
                   );
-                }))
-      ]),
+                }),
+          )
+        ],
+      ),
       bottomNavigationBar: new Container(
         color: Colors.white,
         child: Row(
@@ -36,7 +59,7 @@ class _CardScreenState extends State<CardScreen> {
             Expanded(
                 child: ListTile(
               title: new Text('Total:'),
-              subtitle: new Text('\$230'),
+              subtitle: new Text('${total.toStringAsFixed(3)}'),
             )),
             Expanded(
                 child: new MaterialButton(
