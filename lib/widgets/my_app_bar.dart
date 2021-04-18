@@ -24,11 +24,18 @@ class MyAppBar extends PreferredSize {
       title: Text(title),
       actions: [
         if (!isFromHome)
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Badge(
-              badgeContent: Text('3'),
-              child: Icon(Icons.shopping_cart),
+          GestureDetector(
+            onTap: (){
+              
+            },
+                      child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Badge(
+               
+                badgeContent: Text('3'),
+                child: Icon(Icons.shopping_cart),
+                
+              ),
             ),
           )
       ],

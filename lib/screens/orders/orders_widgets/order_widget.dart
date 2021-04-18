@@ -13,8 +13,8 @@ class Order extends StatelessWidget {
 DateTime date = new DateTime(now.year, now.month, now.day);
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ProductDetailsScreen()));
+        // Navigator.of(context).push(
+        //     MaterialPageRoute(builder: (context) => ProductDetailsScreen()));
       },
       child: Padding(
           padding: const EdgeInsets.all(4.0),
@@ -67,6 +67,14 @@ DateTime date = new DateTime(now.year, now.month, now.day);
                                 TextStyle(color: CupertinoColors.inactiveGray),
                           )),
                         ),
+                          Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Center(
+                              child: Text(
+                            'Qty: ${order.values.elementAt(2)}',
+                            textAlign: TextAlign.center,
+                          )),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: Center(
@@ -75,14 +83,7 @@ DateTime date = new DateTime(now.year, now.month, now.day);
                             textAlign: TextAlign.center,
                           )),
                         ), 
-                        Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Center(
-                              child: Text(
-                            'Qty: ${order.values.elementAt(2)}',
-                            textAlign: TextAlign.center,
-                          )),
-                        ),
+                      
                           Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: Center(
