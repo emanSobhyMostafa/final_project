@@ -25,7 +25,9 @@ class _CartItemState extends State<CartItem> {
     return GestureDetector(
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Card(
+        child: SizedBox(
+          width: double.infinity,
+          child: Card(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Row(
@@ -35,53 +37,20 @@ class _CartItemState extends State<CartItem> {
                   height: 100,
                   width: 90,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        // crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.4,
-                              )),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 2.0, bottom: 2.0),
-                            child: Center(
-                                child: Text(
-                              '${widget.product['price']} EGP',
-                              textAlign: TextAlign.center,
-                            )),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 2.0, bottom: 2.0),
-                            child: Center(
-                                child: Text(
-                              '${widget.product['category']}',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: CupertinoColors.inactiveGray),
-                            )),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                SizedBox(width: 5),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${widget.product['price']} EGP',
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'Total: ${value.toStringAsFixed(2)} EGP',
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Center(
-                      child: Text(
-                    'Total: ${value.toStringAsFixed(2)} EGP',
-                    textAlign: TextAlign.center,
-                  )),
-                ),
+                Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CounterView(
@@ -96,7 +65,9 @@ class _CartItemState extends State<CartItem> {
                   ),
                 ),
               ],
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }

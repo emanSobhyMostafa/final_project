@@ -33,27 +33,25 @@ class _CardScreenState extends State<CardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
-        Expanded(
+      body: Column(
+        children: [
+          Expanded(
             child: ListView.builder(
                 itemCount: testProducts.length,
                 itemBuilder: (ctx, index) {
                   final product = testProducts[index];
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CartItem(
-                        product: product,
-                        triggrtTotal: (total) {
-                          setState(() {
-                            getTotal();
-                          });
-                        },
-                      ),
-                    ],
+                  return CartItem(
+                    product: product,
+                    triggrtTotal: (total) {
+                      setState(() {
+                        getTotal();
+                      });
+                    },
                   );
-                }))
-      ]),
+                }),
+          )
+        ],
+      ),
       bottomNavigationBar: new Container(
         color: Colors.white,
         child: Row(
