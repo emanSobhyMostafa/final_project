@@ -1,5 +1,4 @@
 import 'package:final_project/config/routes.dart';
-
 import 'package:final_project/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +22,6 @@ class _MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'مضمون-Madmoon',
       debugShowCheckedModeBanner: false,
-      
       theme: ThemeData(
           primaryColor: primary,
           accentColor: secondary,

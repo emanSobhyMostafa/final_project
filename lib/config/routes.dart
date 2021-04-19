@@ -1,5 +1,5 @@
 // import 'package:final_project/screens/card/checkout_payment.dart';
-import 'package:final_project/screens/card/cart_payment.dart';
+import 'package:final_project/screens/cart/cart_payment.dart';
 import 'package:final_project/screens/product_details/product_details_screen.dart';
 import 'package:final_project/screens/profile/login_screen.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
