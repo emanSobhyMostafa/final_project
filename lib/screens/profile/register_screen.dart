@@ -1,4 +1,5 @@
 import 'package:final_project/config/theme_colors.dart';
+import 'package:final_project/config/variables_constants.dart';
 import 'package:final_project/screens/profile/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,14 +10,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  static var _keyValidationForm = GlobalKey<FormState>();
-  TextEditingController _textEditConName = TextEditingController();
-  TextEditingController _textEditConEmail = TextEditingController();
-  TextEditingController _textEditConPassword = TextEditingController();
-  TextEditingController _textEditConConfirmPassword = TextEditingController();
-  bool isPasswordVisible = false;
-  bool isConfirmPasswordVisible = false;
-
   @override
   void initState() {
     isPasswordVisible = false;
@@ -41,10 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget getWidgetRegistrationCard() {
-    final FocusNode _passwordEmail = FocusNode();
-    final FocusNode _passwordFocus = FocusNode();
-    final FocusNode _passwordConfirmFocus = FocusNode();
-
+     var keyValidationForm = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
       child: Card(
@@ -56,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: _keyValidationForm,
+            key: keyValidationForm,
             child: Column(
               children: <Widget>[
                 Container(
@@ -69,12 +59,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ), // title: login
                 Container(
                   child: TextFormField(
-                    controller: _textEditConName,
+                    controller: textEditConName,
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.next,
                     validator: _validateUserName,
                     onFieldSubmitted: (String value) {
-                      FocusScope.of(context).requestFocus(_passwordEmail);
+                      FocusScope.of(context).requestFocus(passwordEmail);
                     },
                     decoration: InputDecoration(
                         labelText: 'Full name',
@@ -83,13 +73,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ), //text field : user name
                 Container(
                   child: TextFormField(
-                    controller: _textEditConEmail,
-                    focusNode: _passwordEmail,
+                    controller: textEditConEmail,
+                    focusNode: passwordEmail,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     validator: _validateEmail,
                     onFieldSubmitted: (String value) {
-                      FocusScope.of(context).requestFocus(_passwordFocus);
+                      FocusScope.of(context).requestFocus(passwordFocus);
                     },
                     decoration: InputDecoration(
                         labelText: 'Email',
@@ -99,14 +89,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ), //text field: email
                 Container(
                   child: TextFormField(
-                    controller: _textEditConPassword,
-                    focusNode: _passwordFocus,
+                    controller: textEditConPassword,
+                    focusNode: passwordFocus,
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.next,
                     validator: _validatePassword,
                     onFieldSubmitted: (String value) {
-                      FocusScope.of(context)
-                          .requestFocus(_passwordConfirmFocus);
+                      FocusScope.of(context).requestFocus(passwordConfirmFocus);
                     },
                     obscureText: !isPasswordVisible,
                     decoration: InputDecoration(
@@ -126,8 +115,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ), //text field: password
                 Container(
                   child: TextFormField(
-                      controller: _textEditConConfirmPassword,
-                      focusNode: _passwordConfirmFocus,
+                      controller: textEditConConfirmPassword,
+                      focusNode: passwordConfirmFocus,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
                       validator: _validateConfirmPassword,
@@ -165,7 +154,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: TextStyle(fontSize: 16.0),
                     ),
                     onPressed: () {
-                      if (_keyValidationForm.currentState.validate()) {
+                      if (keyValidationForm.currentState
+                          .validate()) {
                         _onTappedButtonRegister();
                       }
                     },
@@ -222,7 +212,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _validateConfirmPassword(String value) {
     return value.length < 5
         ? 'Min 5 char required'
-        : (value != _textEditConPassword.text ? 'password dont match' : null);
+        : (value != textEditConPassword.text ? 'password dont match' : null);
   }
 
   void _onTappedButtonRegister() {}

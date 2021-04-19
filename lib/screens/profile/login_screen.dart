@@ -1,4 +1,5 @@
 import 'package:final_project/config/theme_colors.dart';
+import 'package:final_project/config/variables_constants.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:final_project/screens/profile/resetpassword_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  static var _keyValidationForm = GlobalKey<FormState>();
-  TextEditingController _textEditConEmail = TextEditingController();
-  TextEditingController _textEditConPassword = TextEditingController();
-  bool isPasswordVisible = false;
   AuthButtonStyle authButtonStyle = AuthButtonStyle.icon;
 
   @override
@@ -42,8 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget getWidgetLoginCard() {
-    final FocusNode _passwordEmail = FocusNode();
-    final FocusNode _passwordFocus = FocusNode();
+      var keyValidationForm = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
       child: Card(
@@ -55,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: _keyValidationForm,
+            key: keyValidationForm,
             child: Column(
               children: <Widget>[
                 Container(
@@ -72,13 +68,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 //text field : user name
                 Container(
                   child: TextFormField(
-                    controller: _textEditConEmail,
-                    focusNode: _passwordEmail,
+                    controller: textEditConEmail,
+                    focusNode: passwordEmail,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     validator: _validateEmail,
                     onFieldSubmitted: (String value) {
-                      FocusScope.of(context).requestFocus(_passwordFocus);
+                      FocusScope.of(context).requestFocus(passwordFocus);
                     },
                     decoration: InputDecoration(
                         labelText: 'Email',
@@ -88,8 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ), //text field: email
                 Container(
                   child: TextFormField(
-                    controller: _textEditConPassword,
-                    focusNode: _passwordFocus,
+                    controller: textEditConPassword,
+                    focusNode: passwordFocus,
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.next,
                     validator: _validatePassword,
@@ -144,7 +140,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(fontSize: 16.0),
                     ),
                     onPressed: () {
-                      if (_keyValidationForm.currentState.validate()) {
+                      if (keyValidationForm.currentState
+                          .validate()) {
                         _onTappedButtonLogin();
                       }
                     },

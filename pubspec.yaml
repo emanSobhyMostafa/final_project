@@ -25,6 +25,7 @@ dependencies:
   auth_buttons: ^0.0.6
   flutter_credit_card: ^0.1.4
   meedu_player: ^0.4.3
+  # flutter_braintree: ^1.2.1
 
 dev_dependencies:
   flutter_test:

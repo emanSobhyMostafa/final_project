@@ -17,7 +17,7 @@ class PreviewButton extends StatelessWidget {
       onPressed: () {
         showModalBottomSheet(
           elevation: 0,
-          backgroundColor: Colors.black.withOpacity(.5),
+          backgroundColor: Colors.grey.withOpacity(.75),
           context: context,
           builder: (context) => Container(
             // color: Colors.white,

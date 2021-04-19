@@ -1,5 +1,5 @@
 import 'package:final_project/config/theme_colors.dart';
-import 'package:final_project/screens/card/cart_screen.dart';
+import 'package:final_project/screens/cart/cart_screen.dart';
 import 'package:final_project/screens/home/widgets/main_categories.dart';
 import 'package:final_project/screens/home/widgets/slider_widget.dart';
 import 'package:final_project/screens/profile/register_screen.dart';

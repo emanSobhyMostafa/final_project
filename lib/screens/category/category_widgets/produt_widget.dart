@@ -1,5 +1,5 @@
 import 'package:final_project/config/theme_colors.dart';
-import 'package:final_project/screens/card/cart_screen.dart';
+import 'package:final_project/screens/cart/cart_screen.dart';
 import 'package:final_project/screens/product_details/product_details_screen.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/cupertino.dart';
