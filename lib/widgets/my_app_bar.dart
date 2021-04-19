@@ -1,6 +1,7 @@
 import 'package:final_project/config/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyAppBar extends PreferredSize {
   final double height;
@@ -22,7 +23,21 @@ class MyAppBar extends PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title:!isFromHome? Text(title): Image.asset('assets/appbar_logo.png', fit: BoxFit.cover),
+      title: !isFromHome
+          ? Text(title)
+          : Text(
+              "مضمون",
+              style: GoogleFonts.reemKufi(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+      // Image.asset(
+      //     'assets/images/appbar_logo.png',
+      //     height: MediaQuery.of(context).size.height*.2,
+      //     width: MediaQuery.of(context).size.width*.3,
+      //     // fit: BoxFit.cover,
+      //   ),
       actions: [
         if (!isFromHome)
           GestureDetector(

@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:final_project/screens/product_details/widgets/preview_button.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 
@@ -28,25 +29,34 @@ class ProductDetailsScreen extends StatelessWidget {
             width: double.infinity,
             height: 200,
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Center(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Column(
               children: [
                 Text(
                   "Product Name",
                   style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 30,
+                    color: Colors.black,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                Row(
+                  children: [
+                    Text(
+                      "25\$",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                    ),
+                    Spacer(),
+                    PreviewButton(),
+                  ],
+                )
               ],
+              crossAxisAlignment: CrossAxisAlignment.start,
             ),
-          ),
-          SizedBox(
-            height: 10,
           ),
           Expanded(
             child: Padding(
@@ -55,8 +65,8 @@ class ProductDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Product Description",
-                      style: TextStyle(fontSize: 18),
+                      "Product Description Product Description Product Description Product Description Product Description",
+                      style: TextStyle(fontSize: 16, color: Colors.grey[600]),
 
                       //softWrap: true,
                     ),
@@ -91,3 +101,5 @@ class ProductDetailsScreen extends StatelessWidget {
     );
   }
 }
+
+

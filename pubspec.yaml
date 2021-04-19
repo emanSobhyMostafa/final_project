@@ -24,6 +24,7 @@ dependencies:
   google_fonts: ^1.1.2
   auth_buttons: ^0.0.6
   flutter_credit_card: ^0.1.4
+  meedu_player: ^0.4.3
 
 dev_dependencies:
   flutter_test:
@@ -31,3 +32,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
