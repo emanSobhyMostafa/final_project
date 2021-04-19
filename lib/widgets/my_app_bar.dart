@@ -47,12 +47,12 @@ class MyAppBar extends PreferredSize {
             padding: const EdgeInsets.all(8),
             child: TextField(
               decoration: InputDecoration(
-                fillColor: Colors.white,
+                fillColor: white,
                 filled: true,
                 hintText: 'Search',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
-                focusColor: Colors.white,
+                focusColor: white,
               ),
             ),
           ),
