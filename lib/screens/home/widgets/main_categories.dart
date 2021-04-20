@@ -1,21 +1,32 @@
+import 'package:final_project/bloc/main_bloc.dart';
 import 'package:final_project/screens/home/widgets/category_with_subcategories.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final allMainCategories =
+        BlocProvider.of<MainBloc>(context, listen: false).state.mainCategoryData;
     return Column(
-      children: [
-        CategoryWithSubcategories(
-          mainCategoryName: "Fashion",
-          subCategories: fachoinCategories,
-        ),
-        CategoryWithSubcategories(
-          mainCategoryName: "House",
-          subCategories: housCategories,
-        ),
-      ],
-    );
+        children: allMainCategories.keys
+            .map((item) => CategoryWithSubcategories(
+                  mainCategoryName: item.split("-")[0],
+                  subCategoriesData: allMainCategories[item],
+
+                ))
+            .toList()
+        // [
+        //   CategoryWithSubcategories(
+        //     mainCategoryName: "Fashion",
+        //     subCategories: fachoinCategories,
+        //   ),
+        //   CategoryWithSubcategories(
+        //     mainCategoryName: "House",
+        //     subCategories: housCategories,
+        //   ),
+        // ],
+        );
   }
 
   static const fachoinCategories = [
@@ -35,8 +46,6 @@ class MainCategories extends StatelessWidget {
       "KIDS FASHION":
           "https://azyya.com/wp-content/uploads/HM-kids-fashion-clothes-2011-13.jpg",
     },
-    
-    
   ];
 
   static const housCategories = [
@@ -52,6 +61,5 @@ class MainCategories extends StatelessWidget {
       "Tools":
           "https://facom.com.pl/29255/cme16-set-of-76-piece-electronic-tools.jpg",
     },
-    
   ];
 }

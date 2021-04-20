@@ -1,5 +1,8 @@
+import 'package:final_project/bloc/main_bloc.dart';
+import 'package:final_project/bloc/main_event.dart';
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/cart/cart_screen.dart';
+import 'package:final_project/screens/home/widgets/home_main.dart';
 import 'package:final_project/screens/home/widgets/main_categories.dart';
 import 'package:final_project/screens/home/widgets/slider_widget.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
@@ -8,6 +11,7 @@ import 'package:final_project/widgets/my_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,17 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedPage = 0;
 
   final _pageOptions = [
-    SingleChildScrollView(
-      child: Column(
-        children: [
-          ImageSliderDemo(),
-          MainCategories(),
-        ],
-      ),
-    ),
+    HomeMain(),
     RegisterScreen(),
     CardScreen(),
   ];
+ 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

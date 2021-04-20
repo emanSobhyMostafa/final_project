@@ -1,15 +1,16 @@
+import 'package:final_project/config/app_string.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 
 class CategoryWithSubcategories extends StatelessWidget {
   final String mainCategoryName;
-  final List<Map<String, String>> subCategories;
-  final int id;
+  final Map<String, dynamic> subCategoriesData;
+  // final int id;
 
   CategoryWithSubcategories({
     this.mainCategoryName,
-    this.subCategories,
-    this.id,
+    this.subCategoriesData,
+    // this.id,
   });
   @override
   Widget build(BuildContext context) {
@@ -29,14 +30,14 @@ class CategoryWithSubcategories extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 5),
                       child: Text(
-                        subCategories[i].keys.first.toUpperCase(),
+                        subCategoriesData[AppString.Categories][i].split("-")[0],
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                     Expanded(
                       child: ClipRRect(
                         child: CachedImage(
-                          imgurl: subCategories[i].values.first,
+                          imgurl: subCategoriesData[AppString.Images][i],
                           height: 100,
                           width: 150,
                         ),
@@ -64,7 +65,7 @@ class CategoryWithSubcategories extends StatelessWidget {
                   vertical: 5,
                 ),
               ),
-              itemCount: subCategories.length,
+              itemCount: subCategoriesData[AppString.Images].length,
               scrollDirection: Axis.horizontal,
             ),
           )
