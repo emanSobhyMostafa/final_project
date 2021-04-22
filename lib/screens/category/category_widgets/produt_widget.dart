@@ -1,19 +1,20 @@
 import 'package:final_project/config/theme_colors.dart';
+import 'package:final_project/models/product.dart';
 import 'package:final_project/screens/cart/cart_screen.dart';
 import 'package:final_project/screens/product_details/product_details_screen.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Product extends StatelessWidget {
-  final product;
+class ProductWidget extends StatelessWidget {
+  final Product product;
 
-  const Product({Key key, this.product}) : super(key: key);
+  const ProductWidget({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(ProductDetailsScreen.routeName);
+        Navigator.of(context).pushNamed(ProductDetailsScreen.routeName,arguments: {'prod':product});
       },
       child: Padding(
         padding: const EdgeInsets.all(4.0),
@@ -23,7 +24,7 @@ class Product extends StatelessWidget {
             child: Row(
               children: [
                 CachedImage(
-                  imgurl: product.values.elementAt(5),
+                  imgurl: product.images[0],
                   height: 100,
                   width: 90,
                 ),
@@ -39,21 +40,21 @@ class Product extends StatelessWidget {
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.65,
                               child: Text(
-                                product.values.elementAt(1),
+                                product.enName,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             )),
                         Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: Text(
-                            '${product.values.elementAt(2) * 15.6} EGP',
+                            '${product.price} EGP',
                           ),
                         ),
 
                         Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: Text(
-                            '${product.values.elementAt(4)}',
+                            '${product.enDes}',
                             style:
                                 TextStyle(color: CupertinoColors.inactiveGray),
                           ),

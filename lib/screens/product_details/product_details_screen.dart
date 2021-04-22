@@ -1,15 +1,22 @@
 import 'package:badges/badges.dart';
+import 'package:final_project/models/product.dart';
 import 'package:final_project/screens/product_details/widgets/preview_button.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
+  // final Product product;
   static const routeName = "details";
+
+  // const ProductDetailsScreen({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final Map<String,dynamic>arg = ModalRoute.of(context).settings.arguments;
+    final Product product = arg['prod'];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Product Name"),
+        title: Text(product.enName),
         actions: [
           FlatButton(
             textColor: Colors.white,
@@ -25,7 +32,8 @@ class ProductDetailsScreen extends StatelessWidget {
         children: <Widget>[
           CachedImage(
             imgurl:
-                "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+            product.images[0],
+            fit: BoxFit.contain,
             width: double.infinity,
             height: 200,
           ),
@@ -34,7 +42,7 @@ class ProductDetailsScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Product Name",
+                  product.enName,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25,
@@ -44,7 +52,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "25\$",
+                      "${product.price} EGP",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -65,7 +73,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Product Description Product Description Product Description Product Description Product Description",
+                      product.enDes,
                       style: TextStyle(fontSize: 16, color: Colors.grey[600]),
 
                       //softWrap: true,
@@ -101,5 +109,3 @@ class ProductDetailsScreen extends StatelessWidget {
     );
   }
 }
-
-
