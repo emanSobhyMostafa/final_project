@@ -10,4 +10,6 @@ class AppString {
   static const Price = "price";
   static const Video = "video";
   static const Products = "products";
+  static const UsersNames = "users_names";
+
 }

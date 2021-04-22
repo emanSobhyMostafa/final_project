@@ -2,6 +2,7 @@ import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/config/variables_constants.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:final_project/screens/profile/resetpassword_screen.dart';
+import 'package:final_project/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 
@@ -20,9 +21,13 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
+  var _isLoading = false;
+  final _key =GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       backgroundColor: Colors.grey,
       body: Center(
         child: SingleChildScrollView(
@@ -39,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget getWidgetLoginCard() {
-      var keyValidationForm = GlobalKey<FormState>();
+    var keyValidationForm = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
       child: Card(
@@ -128,76 +133,79 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   margin: EdgeInsets.only(top: 32.0),
                   width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: third,
-                      onPrimary: Colors.white,
-                      padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                      elevation: 5.0,
-                    ),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                    onPressed: () {
-                      if (keyValidationForm.currentState
-                          .validate()) {
-                        _onTappedButtonLogin();
-                      }
-                    },
-                  ),
+                  child: _isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: third,
+                            onPrimary: Colors.white,
+                            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                            elevation: 5.0,
+                          ),
+                          child: Text(
+                            'Login',
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          onPressed: () {
+                            if (keyValidationForm.currentState.validate()) {
+                              _onTappedButtonLogin();
+                            }
+                          },
+                        ),
                 ), //button: login
-                Container(
-                  margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('OR'),
-                      Container(
-                        margin: EdgeInsets.only(top: 25.0, bottom: 25.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 25),
-                              child: GoogleAuthButton(
-                                onPressed: () {},
+                if (!_isLoading)
+                  Container(
+                    margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('OR'),
+                        Container(
+                          margin: EdgeInsets.only(top: 25.0, bottom: 25.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 25),
+                                child: GoogleAuthButton(
+                                  onPressed: () => googleSignIn(),
+                                  style: AuthButtonStyle.icon,
+                                ),
+                              ),
+                              Divider(),
+                              FacebookAuthButton(
+                                onPressed: () =>facebookSignin(),
                                 style: AuthButtonStyle.icon,
                               ),
-                            ),
-                            Divider(),
-                            FacebookAuthButton(
-                              onPressed: () {},
-                              style: AuthButtonStyle.icon,
-                            ),
-                            Divider(),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                    margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Don`t Have Account? ',
-                        ),
-                        InkWell(
-                          splashColor: Colors.amberAccent.withOpacity(0.5),
-                          onTap: () {
-                            Navigator.pop(context, RegisterScreen.routeName);
-                          },
-                          child: Text(
-                            ' Sign Up',
-                            style: TextStyle(
-                                color: third, fontWeight: FontWeight.bold),
+                              Divider(),
+                            ],
                           ),
                         )
                       ],
-                    )),
+                    ),
+                  ),
+                if (!_isLoading)
+                  Container(
+                      margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Don`t Have Account? ',
+                          ),
+                          InkWell(
+                            splashColor: Colors.amberAccent.withOpacity(0.5),
+                            onTap: () {
+                              Navigator.pop(context, RegisterScreen.routeName);
+                            },
+                            child: Text(
+                              ' Sign Up',
+                              style: TextStyle(
+                                  color: third, fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        ],
+                      )),
               ],
             ),
           ),
@@ -220,6 +228,26 @@ class _LoginScreenState extends State<LoginScreen> {
   String _validatePassword(String value) {
     return value.length < 5 ? 'Min 5 char required' : null;
   }
-}
 
-void _onTappedButtonLogin() {}
+  Future<void> _onTappedButtonLogin() async {
+    setState(() => _isLoading = true);
+    try {
+      await signIn(
+        email: textEditConEmail.text,
+        pass: textEditConPassword.text,
+      );
+      Navigator.pop(context);
+    } on Exception catch (e) {
+      final error = e.toString();
+      final msg = error.contains("[firebase")
+          ? error.substring(error.indexOf("]") + 2)
+          : "Connection Failed";
+      _key.currentState.hideCurrentSnackBar();
+      _key.currentState.showSnackBar(SnackBar(
+        content: Text(msg),
+        duration: Duration(seconds: 4),
+      ));
+    }
+    setState(() => _isLoading = false);
+  }
+}

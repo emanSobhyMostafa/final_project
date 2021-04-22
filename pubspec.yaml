@@ -25,11 +25,11 @@ dependencies:
   auth_buttons: ^0.0.6
   flutter_credit_card: ^0.1.4
   meedu_player: ^0.4.3
-  # flutter_braintree: ^1.2.1
   cloud_firestore: ^0.14.4
   firebase_core: ^0.5.3
   firebase_auth:
-  # firebase_storage:
+  google_sign_in: ^4.5.9
+  flutter_facebook_login: ^3.0.0
 
 dev_dependencies:
   flutter_test:

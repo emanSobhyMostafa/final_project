@@ -1,6 +1,7 @@
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/config/variables_constants.dart';
 import 'package:final_project/screens/profile/login_screen.dart';
+import 'package:final_project/services/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -17,9 +18,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.initState();
   }
 
+  var _isLoading = false;
+  final _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       backgroundColor: Colors.grey,
       body: SingleChildScrollView(
         child: Padding(
@@ -34,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget getWidgetRegistrationCard() {
-     var keyValidationForm = GlobalKey<FormState>();
+    var keyValidationForm = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
       child: Card(
@@ -139,49 +143,55 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Container(
                   margin: EdgeInsets.only(top: 32.0),
                   width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: third,
-                      onPrimary: Colors.white,
-                      padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                      elevation: 5.0,
-                      // shape: const BeveledRectangleBorder(
-                      //     borderRadius:
-                      //         BorderRadius.all(Radius.circular(25.0))),
-                    ),
-                    child: Text(
-                      'Register',
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                    onPressed: () {
-                      if (keyValidationForm.currentState
-                          .validate()) {
-                        _onTappedButtonRegister();
-                      }
-                    },
-                  ),
+                  child: _isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: third,
+                            onPrimary: Colors.white,
+                            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                            elevation: 5.0,
+                            // shape: const BeveledRectangleBorder(
+                            //     borderRadius:
+                            //         BorderRadius.all(Radius.circular(25.0))),
+                          ),
+                          child: Text(
+                            'Register',
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          onPressed: () {
+                            if (keyValidationForm.currentState.validate()) {
+                              _onTappedButtonRegister();
+                            }
+                          },
+                        ),
                 ), //button: login
                 Container(
                     margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Already Register? ',
-                        ),
-                        InkWell(
-                          splashColor: Colors.amberAccent.withOpacity(0.5),
-                          onTap: () {
-                            Navigator.pushNamed(context, LoginScreen.routeName);
-                          },
-                          child: Text(
-                            ' Login',
-                            style: TextStyle(
-                                color: third, fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
-                    ))
+                    child: _isLoading
+                        ? null
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Already Register? ',
+                              ),
+                              InkWell(
+                                splashColor:
+                                    Colors.amberAccent.withOpacity(0.5),
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, LoginScreen.routeName);
+                                },
+                                child: Text(
+                                  ' Login',
+                                  style: TextStyle(
+                                      color: third,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ))
               ],
             ),
           ),
@@ -206,16 +216,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   String _validatePassword(String value) {
-    return value.length < 5 ? 'Min 5 char required' : null;
+    return value.length < 6 ? 'Min 6 char required' : null;
   }
 
   String _validateConfirmPassword(String value) {
-    return value.length < 5
-        ? 'Min 5 char required'
+    return value.length < 6
+        ? 'Min 6 char required'
         : (value != textEditConPassword.text ? 'password dont match' : null);
   }
 
-  void _onTappedButtonRegister() {}
+  Future<void> _onTappedButtonRegister() async {
+    setState(() => _isLoading = true);
+    try {
+      await signUp(
+        email: textEditConEmail.text,
+        pass: textEditConPassword.text,
+        name: textEditConName.text,
+      );
+    } on Exception catch (e) {
+      final error = e.toString();
+      final msg = error.contains("[firebase")
+          ? error.substring(error.indexOf("]") + 2)
+          : "Connection Failed";
+      _key.currentState.hideCurrentSnackBar();
+      _key.currentState.showSnackBar(SnackBar(
+        content: Text(msg),
+        duration: Duration(seconds: 4),
+      ));
+    }
+    setState(() => _isLoading = false);
+  }
 
   void _onTappedTextlogin() {}
 }
