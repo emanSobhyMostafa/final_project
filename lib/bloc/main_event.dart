@@ -7,3 +7,4 @@ class MainEvents extends Equatable {
 }
 
 class GetDataEvent extends MainEvents {}
+

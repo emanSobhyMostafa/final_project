@@ -1,14 +1,26 @@
 import 'package:final_project/config/theme_colors.dart';
+import 'package:final_project/models/cart_item.dart';
+import 'package:final_project/models/product.dart';
+import 'package:final_project/repos/cart_repo.dart';
 import 'package:flutter/material.dart';
 
 class CounterView extends StatefulWidget {
   final int initNumber;
   final Function(int) counterCallback;
+  final Product product;
+  final Function icrement;
+  final Function decrement;
+  final Function deletItem;
+  final CartItem cartItem;
 
-  CounterView({
-    this.initNumber,
-    this.counterCallback,
-  });
+  CounterView(
+      {this.initNumber,
+      this.counterCallback,
+      this.decrement,
+      this.deletItem,
+      this.icrement,
+      @required this.cartItem,
+      @required this.product});
   @override
   _CounterViewState createState() => _CounterViewState();
 }
@@ -48,7 +60,9 @@ class _CounterViewState extends State<CounterView> {
     setState(() {
       currentCount++;
       _counterCallback(currentCount);
+      widget.icrement();
     });
+    addProdutInCart(context: context, product: widget.product);
   }
 
   void _dicrement() {
@@ -56,8 +70,10 @@ class _CounterViewState extends State<CounterView> {
       if (currentCount > 1) {
         currentCount--;
         _counterCallback(currentCount);
+        widget.decrement();
       }
     });
+    decremetnProductInCart(context: context, product: widget.cartItem);
   }
 
   Widget _createIncrementDicrementButton(IconData icon, Function onPressed) {

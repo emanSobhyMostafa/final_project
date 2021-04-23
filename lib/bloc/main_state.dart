@@ -19,7 +19,9 @@ class SuccessState extends MainState {
   final List<String> allCategoriesNames;
 
   SuccessState({this.mainCategoryData, this.allCategoriesNames})
-      : super(mainCategoryData: mainCategoryData, allCategoriesNames: allCategoriesNames);
+      : super(
+            mainCategoryData: mainCategoryData,
+            allCategoriesNames: allCategoriesNames);
   @override
   // TODO: implement props
   List<Object> get props => [mainCategoryData];
@@ -33,3 +35,4 @@ class ErrorState extends MainState {
   // TODO: implement props
   List<Object> get props => [error];
 }
+

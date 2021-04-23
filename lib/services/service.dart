@@ -35,7 +35,7 @@ Future<List<Product>> getProducts(String categoryName) async {
   // print("-------------------------------------------------------");
   List<Product> allProducts = [];
   productsSnapshot.docs.forEach((item) {
-    allProducts.add(productFromJson(item.data()));
+    allProducts.add(productFromMap(item.data()));
   });
   return allProducts;
 }

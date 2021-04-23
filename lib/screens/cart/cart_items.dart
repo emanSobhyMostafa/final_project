@@ -1,23 +1,33 @@
+import 'package:final_project/models/cart_item.dart';
+import 'package:final_project/repos/cart_repo.dart';
 import 'package:final_project/screens/cart/counter_cart.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CartItem extends StatefulWidget {
-  final product;
-  final Function triggrtTotal;
-  const CartItem({Key key, this.product, this.triggrtTotal}) : super(key: key);
+class CartWidget extends StatefulWidget {
+  final CartItem item;
+  final Function icrement;
+  final Function decrement;
+  final Function deletItem;
+  const CartWidget({
+    Key key,
+    this.item,
+    this.decrement,
+    this.deletItem,
+    this.icrement,
+  }) : super(key: key);
 
   @override
-  _CartItemState createState() => _CartItemState();
+  _CartWidgetState createState() => _CartWidgetState();
 }
 
-class _CartItemState extends State<CartItem> {
+class _CartWidgetState extends State<CartWidget> {
   double value;
   @override
   void initState() {
     super.initState();
-    value = (widget.product['price'] * widget.product['qty']);
+    value = (widget.item.product.price * widget.item.count);
   }
 
   @override
@@ -33,7 +43,7 @@ class _CartItemState extends State<CartItem> {
             child: Row(
               children: [
                 CachedImage(
-                  imgurl: widget.product['image'],
+                  imgurl: widget.item.product.images[0],
                   height: 100,
                   width: 90,
                 ),
@@ -42,27 +52,41 @@ class _CartItemState extends State<CartItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${widget.product['price']} EGP',
+                      widget.item.product.enName,
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Total: ${value.toStringAsFixed(2)} EGP',
+                      '${widget.item.product.price} EGP',
+                      style: TextStyle(fontSize: 12),
                     ),
                   ],
                 ),
                 Spacer(),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: CounterView(
-                    initNumber: widget.product['qty'],
+                    initNumber: widget.item.count,
+                    product: widget.item.product,
                     counterCallback: (int val) {
                       setState(() {
-                        value = widget.product['price'] * val;
-                        widget.product['qty'] = val;
-                        widget.triggrtTotal(value);
+                        value = widget.item.product.price * val;
+                        widget.item.count = val;
+
+                        // widget.triggrtTotal(value);
                       });
                     },
+                    cartItem: widget.item,
+                    icrement: widget.icrement,
+                    decrement: widget.decrement,
+                    deletItem: widget.deletItem,
                   ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    widget.deletItem();
+                  },
                 ),
               ],
             ),

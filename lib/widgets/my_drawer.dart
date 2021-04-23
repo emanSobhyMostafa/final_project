@@ -10,7 +10,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final allCategories =
-        BlocProvider.of<MainBloc>(context).state.allCategoriesNames;
+        BlocProvider.of<MainBloc>(context,listen: false).state.allCategoriesNames;
     return Drawer(
       child: ListView(
         children: [

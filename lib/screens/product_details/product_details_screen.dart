@@ -1,7 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:final_project/models/product.dart';
+import 'package:final_project/repos/cart_repo.dart';
 import 'package:final_project/screens/product_details/widgets/preview_button.dart';
 import 'package:final_project/widgets/cached_image.dart';
+import 'package:final_project/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -12,27 +14,17 @@ class ProductDetailsScreen extends StatelessWidget {
   // const ProductDetailsScreen({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final Map<String,dynamic>arg = ModalRoute.of(context).settings.arguments;
+    final Map<String, dynamic> arg = ModalRoute.of(context).settings.arguments;
     final Product product = arg['prod'];
     return Scaffold(
-      appBar: AppBar(
-        title: Text(product.enName),
-        actions: [
-          FlatButton(
-            textColor: Colors.white,
-            child: Badge(
-              badgeContent: Text("3"),
-              child: Icon(Icons.shopping_cart_rounded),
-            ),
-            onPressed: () {},
-          )
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(120),
+        child: MyAppBar(isFromHome: false, title: product.enName),
       ),
       body: Column(
         children: <Widget>[
           CachedImage(
-            imgurl:
-            product.images[0],
+            imgurl: product.images[0],
             fit: BoxFit.contain,
             width: double.infinity,
             height: 200,
@@ -100,7 +92,12 @@ class ProductDetailsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
               color: Theme.of(context).primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                addProdutInCart(
+                  product: product,
+                  context: context,
+                );
+              },
             ),
           )
         ],

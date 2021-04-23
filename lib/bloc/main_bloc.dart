@@ -9,18 +9,22 @@ class MainBloc extends Bloc<MainEvents, MainState> {
   @override
   Stream<MainState> mapEventToState(MainEvents event) async* {
     if (event is GetDataEvent) {
+      // final pref = Hive.box(AppString.LocalMemory);
+      // int total = pref.get("totla") ?? 0;
+
+      // yield TotalInCartState(total);
       yield WaitingState();
 
       try {
         final allMainCats = await getMainCategories();
-    
+
         final allCats = await getAllCategories();
-    
+
         yield SuccessState(
             mainCategoryData: allMainCats, allCategoriesNames: allCats);
       } on Exception catch (e) {
         yield ErrorState();
       }
-    }
+    } 
   }
 }

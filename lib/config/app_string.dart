@@ -11,5 +11,5 @@ class AppString {
   static const Video = "video";
   static const Products = "products";
   static const UsersNames = "users_names";
-
+  static const LocalMemory = "memory";
 }

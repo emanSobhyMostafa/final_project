@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:final_project/bloc/cart_bloc/cart_bloc.dart';
 import 'package:final_project/bloc/main_bloc.dart';
 import 'package:final_project/bloc/main_event.dart';
 import 'package:final_project/config/routes.dart';
@@ -7,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'config/theme_colors.dart';
 
@@ -16,6 +21,9 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   await Firebase.initializeApp();
+  Directory appDocumentDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDir.path);
+  await Hive.openBox("memory");
 
   runApp(_MyApp());
 }
@@ -25,20 +33,23 @@ class _MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'مضمون-Madmoon',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: primary,
-          accentColor: third,
-          textTheme: GoogleFonts.latoTextTheme(
-            Theme.of(context).textTheme,
-          )),
-      home: BlocProvider<MainBloc>(
-        create: (_) => MainBloc()..add(GetDataEvent()),
-        child: HomeScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => MainBloc()..add(GetDataEvent())),
+        BlocProvider(create: (_)=>CartBloc(),)
+      ],
+      child: MaterialApp(
+        title: 'مضمون-Madmoon',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primaryColor: primary,
+            accentColor: third,
+            textTheme: GoogleFonts.latoTextTheme(
+              Theme.of(context).textTheme,
+            )),
+        home: HomeScreen(),
+        routes: routes,
       ),
-      routes: routes,
     );
   }
 }

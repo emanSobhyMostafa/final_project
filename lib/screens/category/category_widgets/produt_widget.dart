@@ -1,10 +1,17 @@
+import 'package:final_project/bloc/main_bloc.dart';
+import 'package:final_project/bloc/main_event.dart';
+import 'package:final_project/config/app_string.dart';
 import 'package:final_project/config/theme_colors.dart';
+import 'package:final_project/models/cart_item.dart';
 import 'package:final_project/models/product.dart';
+import 'package:final_project/repos/cart_repo.dart';
 import 'package:final_project/screens/cart/cart_screen.dart';
 import 'package:final_project/screens/product_details/product_details_screen.dart';
 import 'package:final_project/widgets/cached_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 
 class ProductWidget extends StatelessWidget {
   final Product product;
@@ -14,7 +21,8 @@ class ProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(ProductDetailsScreen.routeName,arguments: {'prod':product});
+        Navigator.of(context).pushNamed(ProductDetailsScreen.routeName,
+            arguments: {'prod': product});
       },
       child: Padding(
         padding: const EdgeInsets.all(4.0),
@@ -75,7 +83,10 @@ class ProductWidget extends StatelessWidget {
                                   ),
                                   Text('Add To Cart'),
                                 ]),
-                                onPressed: () {},
+                                onPressed: () => addProdutInCart(
+                                  product: product,
+                                  context: context,
+                                ),
                               ),
                             ),
                             GestureDetector(
