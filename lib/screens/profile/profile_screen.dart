@@ -19,9 +19,9 @@ class _ProfileState extends State<Profile> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "You Logged In with:" + auth.currentUser.displayName,
-              ),
+              // Text(
+              //   "You Logged In with:" + auth.currentUser.displayName,
+              // ),
               SizedBox(
                 height: 25,
               ),

@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<dynamic> _pageOptions = [
     HomeMain(),
-    LoginScreen(),
+    RegisterScreen(),
     CardScreen(),
   ];
   @override
