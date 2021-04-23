@@ -29,20 +29,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<dynamic> _pageOptions = [
     HomeMain(),
-    LoginScreen(),
+    RegisterScreen(),
     CardScreen(),
   ];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    if (auth.currentUser != null) {
-      _pageOptions = [
-        HomeMain(),
-        Profile(),
-        CardScreen(),
-      ];
-    }
+    // if (auth.currentUser != null) {
+    //   _pageOptions = [
+    //     HomeMain(),
+    //     Profile(),
+    //     CardScreen(),
+    //   ];
+    // }
   }
 
   @override
