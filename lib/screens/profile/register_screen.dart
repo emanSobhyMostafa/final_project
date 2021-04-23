@@ -1,6 +1,7 @@
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/config/variables_constants.dart';
 import 'package:final_project/screens/profile/login_screen.dart';
+import 'package:final_project/screens/profile/profile_screen.dart';
 import 'package:final_project/services/auth_services.dart';
 import 'package:flutter/material.dart';
 
@@ -162,6 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onPressed: () {
                             if (keyValidationForm.currentState.validate()) {
                               _onTappedButtonRegister();
+                              Navigator.pushNamed(context, Profile.routeName);
                             }
                           },
                         ),
