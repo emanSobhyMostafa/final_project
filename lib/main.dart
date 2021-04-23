@@ -25,9 +25,9 @@ class _MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider (
-       create: (_) => MainBloc()..add(GetDataEvent()),
-          child: MaterialApp(
+    return BlocProvider(
+      create: (_) => MainBloc()..add(GetDataEvent()),
+      child: MaterialApp(
         title: 'مضمون-Madmoon',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

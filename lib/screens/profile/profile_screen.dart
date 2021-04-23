@@ -1,4 +1,5 @@
 import 'package:final_project/config/theme_colors.dart';
+import 'package:final_project/services/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,21 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final FirebaseAuth auth = FirebaseAuth.instance;
+  User user;
+  void inputData() {
+    user = auth.currentUser;
+
+    // here you write the codes to input the data into firestore
+  }
 
   @override
   Widget build(BuildContext context) {
+    inputData();
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: third,
+        title: Text("Profile"),
+      ),
       body: Container(
         child: Center(
           child: Column(
@@ -26,7 +38,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: 25,
               ),
-              Text("Your Email Is:" + auth.currentUser.email),
+              Text("Your Email Is:" + user.email),
               SizedBox(
                 height: 25,
               ),
@@ -40,7 +52,9 @@ class _ProfileState extends State<Profile> {
                   'Logout',
                   style: TextStyle(fontSize: 16.0),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  signOut();
+                },
               ),
             ],
           ),
