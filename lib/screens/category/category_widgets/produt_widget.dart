@@ -72,31 +72,29 @@ class ProductWidget extends StatelessWidget {
                         ), // getTextWidgets( post.results[index].title),
                         Row(
                           children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: third,
-                                    onPrimary: white,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 2),
-                                        child: Icon(Icons.shopping_cart),
-                                      ),
-                                      Text('Add To Cart'),
-                                    ],
-                                  ),
-                                  onPressed: () {
-                                    addProdutInCart(
-                                      product: product,
-                                      context: context,
-                                    );
-                                  },
+                            Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: third,
+                                  onPrimary: white,
                                 ),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 2),
+                                      child: Icon(Icons.shopping_cart),
+                                    ),
+                                    Text('Add To Cart'),
+                                  ],
+                                ),
+                                onPressed: () {
+                                  addProdutInCart(
+                                    product: product,
+                                    context: context,
+                                  );
+                                },
                               ),
                             ),
                             FavBtn(product: product)
