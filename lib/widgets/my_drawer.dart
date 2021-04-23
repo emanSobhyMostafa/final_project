@@ -1,6 +1,7 @@
 import 'package:final_project/bloc/main_bloc.dart';
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/category/category.dart';
+import 'package:final_project/screens/deals/deals_screen.dart';
 import 'package:final_project/screens/orders/orders_screen.dart';
 import 'package:final_project/screens/profile/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -69,8 +70,10 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Category()));
+              Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => DealsScreen(
+                           
+                            )));
             },
             // leading: Icon(Icons.local_offer),
             title: Text('Deals'),

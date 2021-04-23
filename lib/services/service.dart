@@ -17,11 +17,46 @@ Future<Map<String, Map<String, dynamic>>> getMainCategories() async {
   return allMainCategoriesData;
 }
 
+// fetch Home Screen Slider's Deals
+
+
+Future<List<String>> getMainDeals() async {
+  final mainDealsSnapshot =
+      await FirebaseFirestore.instance.collection(AppString.MainDeals).get();
+  
+  List<String> allDealsData = [];
+  mainDealsSnapshot.docs[0].data()['images'].forEach((item) {
+    allDealsData.add(item);
+  });
+  print(allDealsData);
+  print("-------------------------------------------------------");
+  return allDealsData;
+}
+
+// fetch deals products
+
+Future<List<Product>> getDeals() async {
+  final dealsSnapshot = await FirebaseFirestore.instance
+      .collection(AppString.DealProducts)
+      .doc(AppString.DealsDoc)
+      .collection(AppString.Products)
+      .get();
+  // print(categoriesSnapshot.docs[0]);
+  // print("-------------------------------------------------------");
+  List<Product> allDeals = [];
+  dealsSnapshot.docs.forEach((item) {
+    allDeals.add(productFromMap(item.data()));
+  });
+  return allDeals;
+}
+
+// fetch Categories
+
 Future<List<String>> getAllCategories() async {
   final categoriesSnapshot =
       await FirebaseFirestore.instance.collection(AppString.Categories).get();
-  print(categoriesSnapshot.docs[0]);
-  print("-------------------------------------------------------");
+  // print(categoriesSnapshot.docs[0]);
+  // print("-------------------------------------------------------");
   List<String> allCategoriesNames = [];
   categoriesSnapshot.docs.forEach((item) {
     allCategoriesNames.add(item.id);
@@ -29,6 +64,8 @@ Future<List<String>> getAllCategories() async {
   return allCategoriesNames;
 }
 
+// fetch products
+ 
 Future<List<Product>> getProducts(String categoryName) async {
   final productsSnapshot = await FirebaseFirestore.instance
       .collection(AppString.Categories)
@@ -44,19 +81,21 @@ Future<List<Product>> getProducts(String categoryName) async {
   return allProducts;
 }
 
+// favourites
 Future<List<String>> getFavs() async {
- 
   if (FirebaseAuth.instance.currentUser == null) {
     return null;
   }
-   String userId = FirebaseAuth.instance.currentUser.uid;
+  String userId = FirebaseAuth.instance.currentUser.uid;
   final favsSnapshot = await FirebaseFirestore.instance
       .collection(AppString.Favourites)
       .doc(userId)
       .get();
   // print(categoriesSnapshot.docs[0]);favs
   // print("-------------------------------------------------------");
-  List<String> allFavs = favsSnapshot.data()['favs']??[];
-  
+  List<String> allFavs = favsSnapshot.data()['favs'] ?? [];
+
   return allFavs;
 }
+
+

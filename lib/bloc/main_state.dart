@@ -5,9 +5,10 @@ abstract class MainState extends Equatable {
   final Map<String, Map<String, dynamic>> mainCategoryData;
   final List<String> allCategoriesNames;
   final List<String> userFavourites;
+  final List<Product> mainDealsData;
 
   MainState(
-      {this.mainCategoryData, this.allCategoriesNames, this.userFavourites});
+      {this.mainCategoryData, this.allCategoriesNames, this.userFavourites , this.mainDealsData});
 }
 
 class WaitingState extends MainState {
@@ -18,17 +19,20 @@ class WaitingState extends MainState {
 
 class SuccessState extends MainState {
   final Map<String, Map<String, dynamic>> mainCategoryData;
+  final List<Product> mainDealsData;
   final List<String> allCategoriesNames;
     final List<String> userFavourites;
 
 
-  SuccessState({this.mainCategoryData, this.allCategoriesNames , this.userFavourites})
+  SuccessState({this.mainCategoryData, this.allCategoriesNames , this.userFavourites,this.mainDealsData})
       : super(
             mainCategoryData: mainCategoryData,
-            allCategoriesNames: allCategoriesNames);
+            allCategoriesNames: allCategoriesNames,
+            mainDealsData: mainDealsData
+            );
   @override
   // TODO: implement props
-  List<Object> get props => [mainCategoryData];
+  List<Object> get props => [mainCategoryData,mainDealsData];
 }
 
 class ErrorState extends MainState {

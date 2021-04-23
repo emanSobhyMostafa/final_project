@@ -17,6 +17,7 @@ class MainBloc extends Bloc<MainEvents, MainState> {
 
       try {
         final allMainCats = await getMainCategories();
+        final allMainDeals = await getDeals();
 
         final allCats = await getAllCategories();
 
@@ -24,7 +25,7 @@ class MainBloc extends Bloc<MainEvents, MainState> {
          final userFavs = <String>[];
     
         yield SuccessState(
-            mainCategoryData: allMainCats, allCategoriesNames: allCats, userFavourites:userFavs);
+            mainCategoryData: allMainCats, allCategoriesNames: allCats, userFavourites:userFavs, mainDealsData:allMainDeals);
       } on Exception catch (e) {
         yield ErrorState();
       }

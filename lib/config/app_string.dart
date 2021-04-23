@@ -13,5 +13,8 @@ class AppString {
   static const UsersNames = "users_names";
   static const LocalMemory = "memory";
   static const Favourites = "userFav";
-
+  static const MainDeals = "main_deals";
+  static const DealsId = "WQciYPJ1cqvnBRxAIxTQ";
+  static const DealProducts = "Deals";
+  static const DealsDoc = "products-المنتجات";
 }

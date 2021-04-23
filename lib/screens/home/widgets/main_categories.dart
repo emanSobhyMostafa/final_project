@@ -13,7 +13,6 @@ class MainCategories extends StatelessWidget {
             .map((item) => CategoryWithSubcategories(
                   mainCategoryName: item.split("-")[0],
                   subCategoriesData: allMainCategories[item],
-
                 ))
             .toList()
         // [

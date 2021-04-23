@@ -1,43 +1,42 @@
-import 'dart:convert';
 
-import 'package:final_project/config/dumy_data.dart';
-import 'package:final_project/screens/category/category_bloc/category_bloc.dart';
-import 'package:final_project/screens/category/category_bloc/category_event.dart';
-import 'package:final_project/screens/category/category_bloc/category_state.dart';
+
 import 'package:final_project/screens/category/category_widgets/product_widget.dart';
 import 'package:final_project/screens/category/category_widgets/sort_widget.dart';
+import 'package:final_project/screens/deals/deals_bloc/deal_bloc.dart';
+import 'package:final_project/screens/deals/deals_bloc/deal_state.dart';
+import 'package:final_project/screens/deals/deals_bloc/deal_event.dart';
+import 'package:final_project/screens/deals/deals_widgets/deal_widget.dart';
 import 'package:final_project/widgets/my_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Category extends StatelessWidget {
-  final String categoryName;
-
-  const Category({Key key, this.categoryName}) : super(key: key);
+class DealsScreen extends StatelessWidget {
+  
   @override
   Widget build(BuildContext _) {
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(120),
-          child: MyAppBar(isFromHome: false, title: categoryName.split('-')[0]),
+          child: MyAppBar(isFromHome: false, title: 'Deals'),
         ),
-        body: BlocProvider<CategoryBloc>(
-        create: (_) => CategoryBloc(categoryName)..add(GetDataEvent()),
-        child: BlocConsumer<CategoryBloc, CategoryState>(
+        body: BlocProvider<DealBloc>(
+        create: (_) => DealBloc()..add(GetDataEvent()),
+        child: BlocConsumer<DealBloc, DealState>(
           builder: (context, state) {
-            final categoryProducts =
-        BlocProvider.of<CategoryBloc>(context, listen: false).state.categoryProducts;
+            final dealProducts =
+        BlocProvider.of<DealBloc>(context, listen: false).state.dealProducts;
             if (state is WaitingState)
               return Center(child: CircularProgressIndicator());
             else if (state is SuccessState)
               return Column(
                 children: [
-                  SortWidget(count:categoryProducts.length),
+                  SortWidget(count:dealProducts.length),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: categoryProducts.length,
+                      itemCount: dealProducts.length,
                       itemBuilder: (ctx, index) {
-                        return ProductWidget(product: categoryProducts[index]);
+                        return DealWidget(deal: dealProducts[index]);
                       },
                     ),
                   )
