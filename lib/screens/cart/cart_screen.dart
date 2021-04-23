@@ -4,6 +4,7 @@ import 'package:final_project/config/dumy_data.dart';
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/cart/cart_items.dart';
 import 'package:final_project/screens/cart/cart_payment.dart';
+import 'package:final_project/screens/cart/cart_payment_method_screen.dart';
 import 'package:final_project/screens/cart/counter_cart.dart';
 import 'package:flutter/material.dart';
 
@@ -64,10 +65,13 @@ class _CardScreenState extends State<CardScreen> {
             Expanded(
                 child: new MaterialButton(
               onPressed: () {
-                Navigator.pushNamed(context, Checkout.routeName);
+                Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => CartPaymentMethodScreen(
+                             
+                            )));
               },
               child: new Text(
-                'Proceed Check Out',
+                'Proceed To Check Out',
                 style: TextStyle(color: white),
               ),
               color: third,
