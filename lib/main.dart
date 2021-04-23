@@ -25,20 +25,20 @@ class _MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'مضمون-Madmoon',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: primary,
-          accentColor: third,
-          textTheme: GoogleFonts.latoTextTheme(
-            Theme.of(context).textTheme,
-          )),
-      home: BlocProvider<MainBloc>(
-        create: (_) => MainBloc()..add(GetDataEvent()),
-        child: HomeScreen(),
+    return BlocProvider (
+       create: (_) => MainBloc()..add(GetDataEvent()),
+          child: MaterialApp(
+        title: 'مضمون-Madmoon',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primaryColor: primary,
+            accentColor: third,
+            textTheme: GoogleFonts.latoTextTheme(
+              Theme.of(context).textTheme,
+            )),
+        home: HomeScreen(),
+        routes: routes,
       ),
-      routes: routes,
     );
   }
 }

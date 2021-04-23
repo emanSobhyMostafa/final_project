@@ -64,7 +64,7 @@ class MyDrawer extends StatelessWidget {
             title: Text('Deals'),
           ),
      
-      ...allCategories.map((e) =>      ListTile(
+      ...allCategories.map((e) =>ListTile(
             onTap: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => Category(categoryName: e,)));
