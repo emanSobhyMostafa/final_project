@@ -164,7 +164,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onPressed: () {
                             if (keyValidationForm.currentState.validate()) {
                               _onTappedButtonRegister();
-                              Navigator.pushNamed(context, HomeMain.routeName);
                             }
                           },
                         ),
@@ -248,6 +247,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ));
     }
     setState(() => _isLoading = false);
+    Navigator.pushNamed(context, Profile.routeName);
   }
 
   void _onTappedTextlogin() {}

@@ -2,6 +2,7 @@ import 'package:final_project/bloc/main_bloc.dart';
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/category/category.dart';
 import 'package:final_project/screens/orders/orders_screen.dart';
+import 'package:final_project/screens/profile/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,7 +41,8 @@ class MyDrawer extends StatelessWidget {
                         color: Colors.white,
                       ),
                       onTap: () {
-                        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => userAccount()));
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => Profile()));
                       }),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

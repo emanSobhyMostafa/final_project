@@ -1,5 +1,8 @@
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/config/variables_constants.dart';
+import 'package:final_project/screens/cart/cart_payment.dart';
+import 'package:final_project/screens/home/home_screen.dart';
+import 'package:final_project/screens/home/widgets/home_main.dart';
 import 'package:final_project/screens/profile/profile_screen.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:final_project/screens/profile/resetpassword_screen.dart';
@@ -150,7 +153,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             if (keyValidationForm.currentState.validate()) {
                               _onTappedButtonLogin();
-                              Navigator.pushNamed(context, Profile.routeName);
                             }
                           },
                         ),
@@ -251,5 +253,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ));
     }
     setState(() => _isLoading = false);
+    Navigator.pushNamed(context, Profile.routeName);
   }
 }
