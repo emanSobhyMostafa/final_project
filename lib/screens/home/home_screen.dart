@@ -5,13 +5,16 @@ import 'package:final_project/screens/cart/cart_screen.dart';
 import 'package:final_project/screens/home/widgets/home_main.dart';
 import 'package:final_project/screens/home/widgets/main_categories.dart';
 import 'package:final_project/screens/home/widgets/slider_widget.dart';
+import 'package:final_project/screens/profile/login_screen.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:final_project/widgets/my_app_bar.dart';
 import 'package:final_project/widgets/my_drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:final_project/screens/profile/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,14 +22,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  User user;
+
   int selectedPage = 0;
 
-  final _pageOptions = [
+  List<dynamic> _pageOptions = [
     HomeMain(),
-    RegisterScreen(),
+    LoginScreen(),
     CardScreen(),
   ];
- 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (auth.currentUser != null) {
+      _pageOptions = [
+        HomeMain(),
+        Profile(),
+        CardScreen(),
+      ];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

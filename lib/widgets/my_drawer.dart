@@ -2,13 +2,23 @@ import 'package:final_project/bloc/main_bloc.dart';
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/screens/category/category.dart';
 import 'package:final_project/screens/orders/orders_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyDrawer extends StatelessWidget {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  User user;
+  void inputData() {
+    user = auth.currentUser;
+
+    // here you write the codes to input the data into firestore
+  }
+
   @override
   Widget build(BuildContext context) {
+    inputData();
     final allCategories =
         BlocProvider.of<MainBloc>(context).state.allCategoriesNames;
     return Drawer(
@@ -43,7 +53,7 @@ class MyDrawer extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 8),
                     child: GestureDetector(
                       child: Text(
-                        'Log In / Sign Up',
+                        user != null ? user.email : 'Log In / Sign Up',
                         style: TextStyle(color: Colors.white),
                       ),
                       onTap: () {
@@ -63,16 +73,20 @@ class MyDrawer extends StatelessWidget {
             // leading: Icon(Icons.local_offer),
             title: Text('Deals'),
           ),
-     
-      ...allCategories.map((e) =>      ListTile(
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Category(categoryName: e,)));
-            },
-            // leading: Icon(Icons.tv),
-            title: Text(e.split('-')[0]),
-          ),).toList(),
-
+          ...allCategories
+              .map(
+                (e) => ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Category(
+                              categoryName: e,
+                            )));
+                  },
+                  // leading: Icon(Icons.tv),
+                  title: Text(e.split('-')[0]),
+                ),
+              )
+              .toList(),
           ListTile(
             onTap: () {
               Navigator.of(context)
