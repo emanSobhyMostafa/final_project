@@ -12,4 +12,6 @@ class AppString {
   static const Products = "products";
   static const UsersNames = "users_names";
   static const LocalMemory = "memory";
+  static const Favourites = "userFav";
+
 }

@@ -1,5 +1,6 @@
 import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/config/variables_constants.dart';
+import 'package:final_project/screens/profile/profile_screen.dart';
 import 'package:final_project/screens/profile/register_screen.dart';
 import 'package:final_project/screens/profile/resetpassword_screen.dart';
 import 'package:final_project/services/auth_services.dart';
@@ -22,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   var _isLoading = false;
-  final _key =GlobalKey<ScaffoldState>();
+  final _key = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             if (keyValidationForm.currentState.validate()) {
                               _onTappedButtonLogin();
+                              Navigator.pushNamed(context, Profile.routeName);
                             }
                           },
                         ),
@@ -174,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               Divider(),
                               FacebookAuthButton(
-                                onPressed: () =>facebookSignin(),
+                                onPressed: () => facebookSignin(),
                                 style: AuthButtonStyle.icon,
                               ),
                               Divider(),

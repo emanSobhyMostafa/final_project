@@ -4,8 +4,10 @@ import 'package:final_project/models/product.dart';
 abstract class MainState extends Equatable {
   final Map<String, Map<String, dynamic>> mainCategoryData;
   final List<String> allCategoriesNames;
+  final List<String> userFavourites;
 
-  MainState({this.mainCategoryData, this.allCategoriesNames});
+  MainState(
+      {this.mainCategoryData, this.allCategoriesNames, this.userFavourites});
 }
 
 class WaitingState extends MainState {
@@ -17,8 +19,10 @@ class WaitingState extends MainState {
 class SuccessState extends MainState {
   final Map<String, Map<String, dynamic>> mainCategoryData;
   final List<String> allCategoriesNames;
+    final List<String> userFavourites;
 
-  SuccessState({this.mainCategoryData, this.allCategoriesNames})
+
+  SuccessState({this.mainCategoryData, this.allCategoriesNames , this.userFavourites})
       : super(
             mainCategoryData: mainCategoryData,
             allCategoriesNames: allCategoriesNames);

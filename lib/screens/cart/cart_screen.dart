@@ -8,6 +8,7 @@ import 'package:final_project/models/product.dart';
 import 'package:final_project/repos/cart_repo.dart';
 import 'package:final_project/screens/cart/cart_items.dart';
 import 'package:final_project/screens/cart/cart_payment.dart';
+import 'package:final_project/screens/cart/cart_payment_method_screen.dart';
 import 'package:final_project/screens/cart/counter_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
