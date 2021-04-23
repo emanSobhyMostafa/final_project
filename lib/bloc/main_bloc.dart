@@ -13,8 +13,11 @@ class MainBloc extends Bloc<MainEvents, MainState> {
 
       try {
         final allMainCats = await getMainCategories();
-        // final allCats = await getAllCats();
-        yield SuccessState(mainCategoryData: allMainCats);
+    
+        final allCats = await getAllCategories();
+    
+        yield SuccessState(
+            mainCategoryData: allMainCats, allCategoriesNames: allCats);
       } on Exception catch (e) {
         yield ErrorState();
       }
