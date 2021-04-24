@@ -4,7 +4,7 @@ import 'package:final_project/config/theme_colors.dart';
 import 'package:final_project/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 
-class OrderConfirmationScreen extends StatelessWidget {
+class OrderonfirmationScreen extends StatelessWidget {
   static const routeName = 'payment';
   @override
   Widget build(BuildContext context) {

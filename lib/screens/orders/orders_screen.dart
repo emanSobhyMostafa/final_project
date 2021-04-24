@@ -1,58 +1,37 @@
 import 'package:badges/badges.dart';
+import 'package:final_project/models/order_item.dart';
 import 'package:final_project/screens/orders/orders_widgets/order_widget.dart';
+import 'package:final_project/services/service.dart';
+import 'package:final_project/widgets/my_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyOrders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
-    final orders = [
-{
-"id": 1,
-"item1": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-"qty":2,
-"price": 109.95,
-"image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-"fee":20
-},{
-"id": 2,
-"title": "Mens Casual Premium Slim Fit T-Shirts ",
-"qty":1,
-"price": 22.3,
-"image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-"fee":22
-},
-];
     return Scaffold(
-      appBar:  AppBar(
-        title: Text("My Orders"),
-        actions: [
-          FlatButton(
-            textColor: Colors.white,
-            child: Badge(
-              badgeContent: Text("3"),
-              child: Icon(Icons.shopping_cart_rounded),
-            ),
-            onPressed: () {},
-          )
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(120),
+        child: MyAppBar(isFromHome: false, title: "Your Orders"),
       ),
-      body:  ListView.builder(
-            itemCount: orders.length,
-            itemBuilder: (ctx, index) {
-              final order = orders[index];
-             
-              return Order(
-                order:order
-              );
-            },
-        ),
+      body: FutureBuilder<List<OrderItem>>(
+          future: getAllUserOrders(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) throw snapshot.error;
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
+            if (snapshot.data.isEmpty)
+              return Center(child: Text("No Orders To show"));
+            final orders = snapshot.data;
+            return ListView.builder(
+              itemCount: orders.length,
+              itemBuilder: (ctx, index) {
+                final order = orders[index];
+
+                return Order(order: order);
+              },
+            );
+          }),
     );
   }
 }
-
-
-
-
-

@@ -1,6 +1,5 @@
 
 
-import 'package:final_project/screens/category/category_widgets/product_widget.dart';
 import 'package:final_project/screens/category/category_widgets/sort_widget.dart';
 import 'package:final_project/screens/deals/deals_bloc/deal_bloc.dart';
 import 'package:final_project/screens/deals/deals_bloc/deal_state.dart';

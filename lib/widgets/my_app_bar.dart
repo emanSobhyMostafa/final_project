@@ -4,6 +4,7 @@ import 'package:final_project/bloc/main_bloc.dart';
 import 'package:final_project/bloc/main_state.dart';
 import 'package:final_project/config/app_string.dart';
 import 'package:final_project/config/theme_colors.dart';
+import 'package:final_project/screens/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,18 +49,23 @@ class MyAppBar extends PreferredSize {
       actions: [
         if (!isFromHome)
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                CardScreen.routeName,
+                arguments: {"isFromHome": false},
+              );
+            },
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Badge(
                 badgeColor: third,
-               badgeContent: BlocBuilder<CartBloc, TotalInCartState>(
-                
-                builder: (_, state) => Text(
-                  "${Hive.box(AppString.LocalMemory).get("total") ?? "0"}",
-                  style: TextStyle(color: white),
+                badgeContent: BlocBuilder<CartBloc, TotalInCartState>(
+                  builder: (_, state) => Text(
+                    "${Hive.box(AppString.LocalMemory).get("total") ?? "0"}",
+                    style: TextStyle(color: white),
+                  ),
                 ),
-              ),
                 child: Icon(Icons.shopping_cart),
               ),
             ),

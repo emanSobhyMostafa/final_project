@@ -20,25 +20,33 @@ class CategoryWithSubcategories extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(mainCategoryName),
+            child: Text(
+              mainCategoryName,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           Expanded(
             child: ListView.builder(
               itemBuilder: (_, i) => GestureDetector(
-                onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Category(
-                              categoryName: subCategoriesData[AppString.Categories][i],
-                            )));
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Category(
+                            categoryName:
+                                subCategoriesData[AppString.Categories][i],
+                          )));
                 },
-                              child: Container(
+                child: Container(
                   child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 5, horizontal: 5),
                         child: Text(
-                          subCategoriesData[AppString.Categories][i].split("-")[0],
+                          subCategoriesData[AppString.Categories][i]
+                              .split("-")[0],
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -82,6 +90,7 @@ class CategoryWithSubcategories extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
       ),
       height: MediaQuery.of(context).size.height * .25,
+      padding: EdgeInsets.symmetric(vertical: 10),
     );
   }
 }

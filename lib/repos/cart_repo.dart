@@ -66,18 +66,9 @@ Future<void> deleteCartItem(
   pref.put("total", total - product.count);
   final List<String> cartData = pref.get("cart");
   final allCartItems = cartData.map((item) => cartItemFromJson(item)).toList();
-  //  allCartItems.any((item) {
-  //   if (item.product.id == product.product.id) {
-  //     item.decremntCount();
-  //     return true;
-  //   }
-  //   return false;
-  // });
-
+ 
   allCartItems.removeWhere((item)=>item.product.id == product.product.id);
-  // if (!isProdInCart) {
-  //   allCartItems.add(CartItem(count: 1, product: product));
-  // }
+  
   await pref.put(
     "cart",
     allCartItems.map((item) => cartItemToJson(item)).toList(),

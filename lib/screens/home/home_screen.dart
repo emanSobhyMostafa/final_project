@@ -32,14 +32,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int selectedPage = 0;
 
-  List<dynamic> _pageOptions = [
-    HomeMain(),
-    RegisterScreen(),
-    CardScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<dynamic> _pageOptions = [
+      HomeMain(),
+      StreamBuilder<Object>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) return Profile();
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Center(child: CircularProgressIndicator());
+          return RegisterScreen();
+        },
+      ),
+      CardScreen(),
+    ];
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(120),
@@ -62,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Badge(
               badgeColor: third,
               badgeContent: BlocBuilder<CartBloc, TotalInCartState>(
-                
                 builder: (_, state) => Text(
                   "${Hive.box(AppString.LocalMemory).get("total") ?? "0"}",
                   style: TextStyle(color: white),

@@ -10,10 +10,13 @@ import 'package:final_project/screens/cart/cart_items.dart';
 import 'package:final_project/screens/cart/cart_payment.dart';
 import 'package:final_project/screens/cart/cart_payment_method_screen.dart';
 import 'package:final_project/screens/cart/counter_cart.dart';
+import 'package:final_project/widgets/my_app_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 class CardScreen extends StatefulWidget {
+  static const routeName = "cart";
   @override
   _CardScreenState createState() => _CardScreenState();
 }
@@ -57,7 +60,15 @@ class _CardScreenState extends State<CardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> args =
+        ModalRoute.of(context).settings.arguments ?? {};
     return Scaffold(
+      appBar: args["isFromHome"] != null
+          ? MyAppBar(
+              height: 120,
+              title: "Your Cart",
+            )
+          : null,
       body: _totalCartItems == 0
           ? Center(child: Text("Your cart is empty"))
           : Column(
@@ -86,10 +97,15 @@ class _CardScreenState extends State<CardScreen> {
 
                               onDeletCartItem(allCartItems[index]);
 
-                               _totalCartItems = Hive.box(AppString.LocalMemory).get("total") ?? 0;
-  final List<String> cartData =
-      Hive.box(AppString.LocalMemory).get("cart") ?? [];
-          allCartItems = cartData.map((item) => cartItemFromJson(item)).toList();
+                              _totalCartItems = Hive.box(AppString.LocalMemory)
+                                      .get("total") ??
+                                  0;
+                              final List<String> cartData =
+                                  Hive.box(AppString.LocalMemory).get("cart") ??
+                                      [];
+                              allCartItems = cartData
+                                  .map((item) => cartItemFromJson(item))
+                                  .toList();
                             });
                           },
                         );
@@ -106,8 +122,30 @@ class _CardScreenState extends State<CardScreen> {
                       )),
                       Expanded(
                         child: new MaterialButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Checkout.routeName);
+                          onPressed: () async {
+                            if (FirebaseAuth.instance.currentUser == null) {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: Text("Sign In First"),
+                                  content: Text(
+                                      "Please go to profile and log in to continue your process"),
+                                  actions: [
+                                    FlatButton(
+                                      textColor: Colors.white,
+                                      child: Text("OK"),
+                                      color: primary,
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else
+                              await Navigator.pushNamed(
+                                  context, CartPaymentMethodScreen.routeName);
+                            setState(() {});
                           },
                           child: new Text(
                             'Proceed Check Out',

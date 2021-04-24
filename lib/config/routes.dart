@@ -1,6 +1,7 @@
 // import 'package:final_project/screens/card/checkout_payment.dart';
 import 'package:final_project/screens/cart/cart_payment.dart';
 import 'package:final_project/screens/cart/cart_payment_method_screen.dart';
+import 'package:final_project/screens/cart/cart_screen.dart';
 import 'package:final_project/screens/home/widgets/home_main.dart';
 import 'package:final_project/screens/product_details/product_details_screen.dart';
 import 'package:final_project/screens/profile/login_screen.dart';
@@ -17,4 +18,5 @@ final routes = {
   CartPaymentMethodScreen.routeName:(context)=>CartPaymentMethodScreen(),
   Profile.routeName: (_) => Profile(),
   HomeMain.routeName: (_) => HomeMain(),
+  CardScreen.routeName:(_)=>CardScreen(),
 };

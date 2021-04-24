@@ -172,13 +172,20 @@ class _LoginScreenState extends State<LoginScreen> {
                               Container(
                                 margin: EdgeInsets.only(right: 25),
                                 child: GoogleAuthButton(
-                                  onPressed: () => googleSignIn(),
+                                  onPressed: () async {
+                                    await googleSignIn();
+                                    Navigator.pop(context);
+                                  },
                                   style: AuthButtonStyle.icon,
                                 ),
                               ),
                               Divider(),
                               FacebookAuthButton(
-                                onPressed: () => facebookSignin(),
+                                onPressed: () async {
+
+                                   await facebookSignin();
+                                   Navigator.pop(context);
+                                },
                                 style: AuthButtonStyle.icon,
                               ),
                               Divider(),
@@ -253,6 +260,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ));
     }
     setState(() => _isLoading = false);
-    Navigator.pushNamed(context, Profile.routeName);
+    // Navigator.pushNamed(context, Profile.routeName);
+    // Navigator.pop(context);
   }
 }

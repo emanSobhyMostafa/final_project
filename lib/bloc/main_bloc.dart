@@ -21,14 +21,18 @@ class MainBloc extends Bloc<MainEvents, MainState> {
 
         final allCats = await getAllCategories();
 
-        // final userFavs = await getFavs()??[];
-         final userFavs = <String>[];
-    
+        final userFavs = await getFavs()??[];
+        // final userFavs = <String>[];
+
         yield SuccessState(
-            mainCategoryData: allMainCats, allCategoriesNames: allCats, userFavourites:userFavs, mainDealsData:allMainDeals);
+          mainCategoryData: allMainCats,
+          allCategoriesNames: allCats,
+          userFavourites: userFavs,
+          mainDealsData: allMainDeals,
+        );
       } on Exception catch (e) {
         yield ErrorState();
       }
-    } 
+    }
   }
 }

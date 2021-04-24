@@ -34,6 +34,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash:
+
+flutter_native_splash:
+  color: "#AB47BC"
+  image: assets/logo.png
+  android: true
 
 flutter:
   uses-material-design: true

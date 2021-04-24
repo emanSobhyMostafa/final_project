@@ -1,11 +1,11 @@
-import 'package:final_project/bloc/main_bloc.dart';
+import 'package:final_project/config/app_string.dart';
 import 'package:final_project/models/product.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:final_project/services/service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 
-class FavBtn extends StatelessWidget {
+class FavBtn extends StatefulWidget {
   const FavBtn({
     Key key,
     @required this.product,
@@ -14,21 +14,20 @@ class FavBtn extends StatelessWidget {
   final Product product;
 
   @override
-  Widget build(BuildContext context) {
-        final allFavs = BlocProvider.of <MainBloc>(context).state.userFavourites;
+  _FavBtnState createState() => _FavBtnState();
+}
 
-    
+class _FavBtnState extends State<FavBtn> {
+  @override
+  Widget build(BuildContext context) {
+    List<String> allFavs = Hive.box(AppString.LocalMemory).get("favs") ?? [];
+    var isFav = allFavs.contains(widget.product.id);
     return IconButton(
-      icon: Icon(CupertinoIcons.heart),
-      onPressed: () {
-        if (FirebaseAuth.instance.currentUser.uid ==
-            null) {
-          return;
-        }
-        if (allFavs.contains(product.id)) {
-        } else {
-          allFavs.add('value');
-        }
+      color: Colors.red,
+      icon: Icon(isFav ? Icons.favorite : Icons.favorite_border),
+      onPressed: () async {
+        await toggleFavs(widget.product.id);
+        setState(() {});
       },
     );
   }

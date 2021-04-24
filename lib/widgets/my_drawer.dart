@@ -10,19 +10,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyDrawer extends StatelessWidget {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  User user;
-  void inputData() {
-    user = auth.currentUser;
+  final user = FirebaseAuth.instance.currentUser;
+  // User user;
+  // void inputData() {
+  //   user = auth.currentUser;
 
-    // here you write the codes to input the data into firestore
-  }
+  //   // here you write the codes to input the data into firestore
+  // }
 
   @override
   Widget build(BuildContext context) {
-    inputData();
-    final allCategories =
-        BlocProvider.of<MainBloc>(context,listen: false).state.allCategoriesNames;
+    // inputData();
+    final allCategories = BlocProvider.of<MainBloc>(context, listen: false)
+        .state
+        .allCategoriesNames;
     return Drawer(
       child: ListView(
         children: [
@@ -42,26 +43,36 @@ class MyDrawer extends StatelessWidget {
                         color: Colors.white,
                       ),
                       onTap: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Profile()));
+                        if (user != null)
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Profile()));
                       }),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(
+                      top: 8,
+                      left: 8,
+                      right: 8,
+                      bottom: 4,
+                    ),
                     child: Text(
                       'Welcome',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: GestureDetector(
-                      child: Text(
-                        user != null ? user.email : 'Log In / Sign Up',
-                        style: TextStyle(color: Colors.white),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: GestureDetector(
+                        child: Text(
+                          user != null
+                              ? "${user.email}\n${user.displayName ?? ""}"
+                              : 'Log In / Sign Up',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onTap: () {
+                          // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
+                        },
                       ),
-                      onTap: () {
-                        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
-                      },
                     ),
                   )
                 ],
@@ -70,10 +81,8 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => DealsScreen(
-                           
-                            )));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => DealsScreen()));
             },
             // leading: Icon(Icons.local_offer),
             title: Text('Deals'),
@@ -81,8 +90,9 @@ class MyDrawer extends StatelessWidget {
           ...allCategories
               .map(
                 (e) => ListTile(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                  onTap: () async {
+                    print(ModalRoute.of(context).settings.name);
+                   await Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => Category(
                               categoryName: e,
                             )));

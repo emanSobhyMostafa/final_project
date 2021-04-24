@@ -247,7 +247,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ));
     }
     setState(() => _isLoading = false);
-    Navigator.pushNamed(context, Profile.routeName);
+    // Navigator.pushNamed(context, Profile.routeName);
   }
 
   void _onTappedTextlogin() {}

@@ -35,10 +35,23 @@ class _ProfileState extends State<Profile> {
               // Text(
               //   "You Logged In with:" + auth.currentUser.displayName,
               // ),
-              SizedBox(
-                height: 25,
+              // SizedBox(
+              //   height: 25,
+              // ),
+              Icon(
+                IconData(61502, fontFamily: 'MaterialIcons'),
+                size: 80,
+                color: third,
               ),
-              Text("Your Email Is:" + user.email),
+              SizedBox(
+                height: 45,
+              ),
+              Text(
+                "You Loged in with:\n" + user.email,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
               SizedBox(
                 height: 25,
               ),
